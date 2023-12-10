@@ -27,6 +27,10 @@ header {
     font-family: 'FA'; /* Change font for the text below the logo */
 }
 
+.header-index{
+    background: linear-gradient(to top, #343a40, #4f545a); /* Gradient from gray to whitish */    color: #fff; /* Change the text's color */
+}
+
 /* Theme for the header of all pages except the index page */
 .header-not-index {
     text-align: left;
