@@ -29,15 +29,19 @@ function fetchCategoryArticles(categoryId) {
 }
 
 function getCategoryFilenames(categoryId) {
-    // Replace this with your logic to map category IDs to filenames
-    // For example, if categoryId is 'oximata', return ['car-rentals.html', 'boat-rentals.html']
-    // You need to implement this logic based on your category ID naming convention
-    // The returned array of filenames should correspond to the HTML files containing the articles for the category
     switch (categoryId) {
         case 'οχήματα':
             return ['car-rentals.html', 'boat-rentals.html'];
         case 'ακίνητα':
             return ['home-rentals.html', 'commercial-rentals.html'];
+        case 'ενοικιάσεις αυτοκινήτων':
+            return ['car-rentals.html'];
+        case 'ενοικιάσεις σκαφών':
+            return ['boat-rentals.html'];
+        case 'ενοικιάσεις κατοικιών':
+            return ['home-rentals.html'];
+        case 'ενοικιάσεις επαγγελματικών χώρων':
+            return ['commercial-rentals.html'];
         // Add more cases for other categories
         default:
             // Handle unknown category

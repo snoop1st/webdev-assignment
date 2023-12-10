@@ -50,8 +50,9 @@ document.addEventListener('DOMContentLoaded', function () {
                         <img src="${category.image}" alt="${category.title}" style="width: 80px; height: 80px;">
                     </a>
                     <ul>
-                        ${category.subcategories.map(subcategory => `<li><a href="${subcategory.subcategoryLink}">${subcategory.subcategoryTitle}</a></li>`).join('')}
+                         ${category.subcategories.map(subcategory => `<li><a href="category.html?id=${getCategoryID(subcategory.subcategoryTitle)}">${subcategory.subcategoryTitle}</a></li>`).join('')}
                     </ul>
+
                 </article>
             `;
             dynamicCategories.appendChild(categoryElement);
