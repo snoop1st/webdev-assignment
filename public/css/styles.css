@@ -4,11 +4,7 @@ and 1920x1080 for desktops. */
 /* TO-DO:
     -add gradient in the header
 */
-/* Add custom font from file */
-@font-face {
-    font-family: 'FA';
-    src: url('fa-regular-400.woff2') format('woff2');
-}
+
 
 /* Theme for the body of all pages */
 body {

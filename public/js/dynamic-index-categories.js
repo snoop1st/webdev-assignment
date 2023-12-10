@@ -41,12 +41,12 @@ document.addEventListener('DOMContentLoaded', function () {
         categories.forEach(category => {
             const categoryElement = document.createElement('div');
             categoryElement.classList.add('categories-section');
-            const categoryType = category.title.toLowerCase().includes('ακίνητα') ? 'category-estate.html' : 'category-vehicle.html';
+            const categoryId = getCategoryID(category.title);
 
             categoryElement.innerHTML = `
                 <article>
                     <h3>${category.title}</h3>
-                    <a href="${categoryType}">
+                    <a href="category.html?id=${categoryId}">
                         <img src="${category.image}" alt="${category.title}" style="width: 80px; height: 80px;">
                     </a>
                     <ul>
@@ -56,5 +56,11 @@ document.addEventListener('DOMContentLoaded', function () {
             `;
             dynamicCategories.appendChild(categoryElement);
         });
+    }
+
+    function getCategoryID(categoryTitle) {
+        // Your logic to determine category ID based on category title
+        // For now, it simply converts to lowercase and adds "category-" prefix
+        return categoryTitle.toLowerCase();
     }
 });
