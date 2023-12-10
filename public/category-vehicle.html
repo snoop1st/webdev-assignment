@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="el">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ενοικιάσεις Κατοικιών</title>
+    <link rel="shortcut icon" href="images/logo-c.png" type="image/x-icon">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+    <header class="header-not-index">
+        <img id="logo" src="images/logo.png" alt="logo">
+        <nav>
+            <ul>
+                <li>
+                    <a href="index.html">
+                        <img src="images/home-icon.png" alt="Home">
+                        <span>Αρχική</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="categories.html">
+                        <img src="images/categories-icon.png" alt="Categories">
+                        <span>Κατηγορίες</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="about-us.html">
+                        <img src="images/about-icon.png" alt="About Us">
+                        <span>Ποιοι Είμαστε</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="contact.html">
+                        <img src="images/contact-icon.png" alt="Contact">
+                        <span>Επικοινωνία</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="registration.html">
+                        <img src="images/login-icon.png" alt="Login">
+                        <span>Εγγραφή</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="rentals-section">
+        <h2>Ενοικιάσεις Οχημάτων</h2>
+
+        <!-- Dynamic content will be inserted here using JavaScript -->
+
+    </section>
+
+    <footer>
+        <nav>
+            <a href="https://facebook.com">
+                <img src="images/fb.png" alt="fb">
+            </a>
+            <a href="https://x.com">
+                <img src="images/twitter.png" alt="twitter">
+            </a>
+            <a href="https://instagram.com">
+                <img src="images/insta.png" alt="instagram">
+            </a>
+        </nav>
+        <p>&copy; 2023 Nikolaos Sokolis & Eleftherios Barlikas</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Fetch articles from car-rentals.html and boat-rentals.html concurrently
+            Promise.all([
+                fetch('car-rentals.html').then(response => response.text()),
+                fetch('boat-rentals.html').then(response => response.text())
+            ])
+            .then(([carRentalsHtml, boatRentalsHtml]) => {
+                const parser = new DOMParser();
+    
+                // Process car rentals HTML
+                const carDoc = parser.parseFromString(carRentalsHtml, 'text/html');
+                const carArticles = Array.from(carDoc.querySelectorAll('article'));
+    
+                // Process boat rentals HTML
+                const boatDoc = parser.parseFromString(boatRentalsHtml, 'text/html');
+                const boatArticles = Array.from(boatDoc.querySelectorAll('article'));
+    
+                // Shuffle the combined articles array
+                const shuffledArticles = shuffleArray(carArticles.concat(boatArticles));
+    
+                // Insert shuffled articles into category-estate.html
+                const rentalsSection = document.querySelector('.rentals-section');
+                shuffledArticles.forEach(article => {
+                    rentalsSection.appendChild(article.cloneNode(true));
+                });
+            })
+            .catch(error => console.error('Error fetching HTML:', error));
+    
+            function shuffleArray(array) {
+                for (let i = array.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [array[i], array[j]] = [array[j], array[i]];
+                }
+                return array;
+            }
+        });
+    </script>
+    
+
+</body>
+
+</html>

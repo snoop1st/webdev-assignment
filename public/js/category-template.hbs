@@ -1,0 +1,14 @@
+{{#each categories}}
+  <div class="categories-section">
+    <article>
+      <h3>{{title}}</h3>
+      <img src="{{image}}" alt="{{title}}">
+      <ul>
+        {{#each subcategories}}
+          <li><a href="{{subcategoryLink}}">{{subcategoryTitle}}</a></li>
+        {{/each}}
+      </ul>
+    </article>
+  </div>
+{{/each}}
+console.log("Success in handlebars template!");

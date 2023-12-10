@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="el">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Εγγραφή Χρήστη</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="shortcut icon" href="images/logo-c.png" type="image/x-icon">
+</head>
+
+<body>
+
+    <header class="header-not-index">
+        <img id="logo" src="images/logo.png" alt="logo">
+        <nav>
+            <ul>
+                <li>
+                    <a href="index.html">
+                        <img src="images/home-icon.png" alt="Home">
+                        <span>Αρχική</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="categories.html">
+                        <img src="images/categories-icon.png" alt="Categories">
+                        <span>Κατηγορίες</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="about-us.html">
+                        <img src="images/about-icon.png" alt="About Us">
+                        <span>Ποιοι Είμαστε</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="contact.html">
+                        <img src="images/contact-icon.png" alt="Contact">
+                        <span>Επικοινωνία</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="registration.html">
+                        <img src="images/login-icon.png" alt="Login">
+                        <span>Εγγραφή</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+
+    <section class="registration-form">
+        <h2>Φόρμα Εγγραφής Χρήστη</h2>
+        <form id="registrationForm" action="index.html" method="post" onsubmit="return validateForm()">
+            <fieldset>
+                <legend>Στοιχεία Επικοινωνίας</legend>
+                <label for="fullName">Ονοματεπώνυμο:</label>
+                <input type="text" id="fullName" name="fullName" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="address">Διεύθυνση Κατοικίας:</label>
+                <input type="text" id="address" name="address" required list="addressList">
+
+                <datalist id="addressList">
+                    <option value="123 Main Street, City">
+                    <option value="456 Oak Avenue, Town">
+                </datalist>
+
+
+                <label for="birthdate">Ημερομηνία Γέννησης:</label>
+                <input type="date" id="birthdate" name="birthdate" required>
+
+                <label for="phone">Τηλέφωνα Επικοινωνίας (Διαχωρισμένα με κόμμα):</label>
+                <input type="tel" id="phone" name="phone" pattern="[0-9,]+" required>
+            </fieldset>
+
+            <fieldset>
+                <legend>Στοιχεία Ταυτοποίησης</legend>
+                <label for="username">Όνομα Χρήστη:</label>
+                <input type="text" id="username" name="username" required>
+
+                <label for="password">Κωδικός Πρόσβασης:</label>
+                <input type="password" id="password" name="password" required>
+
+                <label for="confirmPassword">Επιβεβαίωση Κωδικού:</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" required oninput="checkPasswordMatch()">                
+            </fieldset>
+
+            <details>
+                <summary>Επικοινωνία</summary>
+                <fieldset class="fieldset-grid">
+                    <legend>Επιλογές Επικοινωνίας</legend>
+
+                    <div class="checkbox-option">
+                        <input type="checkbox" id="sms" name="communicationMethod" value="sms" onchange="checkCommunicationOptions()">
+                        <label for="sms">SMS</label>
+                    </div>
+
+                    <div class="checkbox-option">
+                        <input type="checkbox" id="emailOption" name="communicationMethod" value="Email" onchange="checkCommunicationOptions()">
+                        <label for="emailOption">Email</label>
+                    </div>
+
+                    <div class="checkbox-option">
+                        <input type="checkbox" id="viber" name="communicationMethod" value="Viber" onchange="checkCommunicationOptions()">  
+                        <label for="viber">Viber</label>
+                    </div>
+
+                    <div class="checkbox-option">
+                        <input type="checkbox" id="whatsapp" name="communicationMethod" value="WhatsApp" onchange="checkCommunicationOptions()">
+                        <label for="whatsapp">WhatsApp</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" id="messenger" name="communicationMethod" value="Messenger" onchange="checkCommunicationOptions()">
+                        <label for="messenger">Messenger</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" id="telegram" name="communicationMethod" value="Telegram" onchange="checkCommunicationOptions()"> 
+                        <label for="telegram">Telegram</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" id="pigeon" name="communicationMethod" value="Περιστέρι" onchange="checkCommunicationOptions()">
+                        <label for="pigeon">Περιστέρι</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" id="signal" name="communicationMethod" value="Signal" onchange="checkCommunicationOptions()">
+                        <label for="signal">Signal</label>
+                    </div>
+                </fieldset>
+            </details>
+
+            <details>
+                <summary>Ερωτηματολόγιο</summary>
+                <fieldset>
+                    <legend>Συμπληρώστε όσες ερωτήσεις επιθυμείτε</legend>
+
+                    <label for="adType">Τύπος Αγγελιών που Σας Ενδιαφέρουν:</label>
+                    <select id="adType" name="adType" onchange="showSubcategories()">
+                        <option value="" disabled selected hidden>Επιλέξτε</option>
+                        <option value="Ακίνητα">Ακίνητα</option>
+                        <option value="Οχήματα">Οχήματα</option>
+                    </select>
+
+                    <div id="subcategoryDropdown" style="display: none;">
+                        <label for="subcategory">Υποκατηγορία:</label>
+                        <select id="subcategory" name="subcategory">
+                        </select>
+                    </div>
+
+                    <label for="status">Εργασιακό Προφίλ:</label>
+                    <select id="status" name="status" onchange="toggleJobField()">
+                        <option value="" disabled selected hidden>Επιλέξτε</option>
+                        <option value="Φοιτητής">Φοιτητής</option>
+                        <option value="Συνταξιούχος">Συνταξιούχος</option>
+                        <option value="Εργαζόμενος">Εργαζόμενος</option>
+                    </select>
+
+                    <label for="job" id="jobLabel" style="display: none;">Επάγγελμα:</label>
+                    <input type="text" id="job" name="Job" list="job-list" style="display: none;">
+                    <datalist id="job-list">
+                        <option value="Μηχανικός">
+                        <option value="Γιατρός">
+                        <option value="Δικηγόρος">
+                        <option value="Στρατιωτικός">
+                        <option value="Υδραυλικός">
+                        <option value="Ηλεκτρολόγος">
+                        <option value="Μάγειρας">
+                        <option value="Σερβιτόρος">
+                        <option value="Γραμματέας">
+                    </datalist>
+
+
+
+                    <label for="region">Περιοχή που επιθυμείτε να κατοικήσετε/δραστηριοποιηθείτε:</label>
+                    <input type="text" id="region" name="Region" list="region-list">
+                    <datalist id="region-list">
+                        <option value="Αττική">
+                        <option value="Θεσσαλονίκη">
+                        <option value="Κρήτη">
+                        <option value="Πελοπόννησος">
+                        <option value="Ήπειρος">
+                        <option value="Μακεδονία">
+                        <option value="Θράκη">
+                        <option value="Στερεά Ελλάδα">
+                        <option value="Ιόνια Νησιά">
+                        <option value="Νησιά Αιγαίου">
+                    </datalist>
+
+                    <label for="hobby">Ποιο είναι το αγαπημένο σας χόμπι ή δραστηριότητα;</label>
+                    <input type="text" id="hobby" name="Hobby" list="hobby-list">
+                    <datalist id="hobby-list">
+                        <option value="Ποδόσφαιρο">
+                        <option value="Μπάσκετ">
+                        <option value="Τένις">
+                        <option value="Πινγκ Πονγκ">
+                        <option value="Ποδηλασία">
+                        <option value="Κολύμβηση">
+                        <option value="Πεζοπορία">
+                        <option value="Σκάκι">
+                        <option value="Μπιλιάρδο">
+                        <option value="Πολιτική">
+                        <option value="Φωτογραφία">
+                        <option value="Γραφιστική">
+                        <option value="Μουσική">
+                        <option value="Ζωγραφική">
+                        <option value="Γλώσσες">
+                    </datalist>
+
+                    <label for="entertainment">Τι είδους ψυχαγωγία σας ενδιαφέρει περισσότερο; (π.χ., ταινίες, μουσική,
+                        βιβλία)</label>
+                    <input type="text" id="entertainment" name="Entertainment" list="entertainment-list">
+                    <datalist id="entertainment-list">
+                        <option value="Ταινίες">
+                        <option value="Μουσική">
+                        <option value="Βιβλία">
+                        <option value="Θέατρο">
+                        <option value="Συναυλίες">
+                        <option value="Μουσεία">
+                        <option value="Εκθέσεις">
+                    </datalist>
+                </fieldset>
+
+            </details>
+            <script src="js/registration-categories.js"></script>
+            <script src="js/jobField.js"></script>
+            <input type="submit" value="Υποβολή">
+        </form>
+    </section>
+
+    <footer>
+        <nav>
+            <a href="https://facebook.com">
+                <img src="images/fb.png" alt="fb">
+            </a>
+            <a href="https://x.com">
+                <img src="images/twitter.png" alt="twitter">
+            </a>
+            <a href="https://instagram.com">
+                <img src="images/insta.png" alt="instagram">
+            </a>
+        </nav>
+        <p>&copy; 2023 Nikolaos Sokolis & Eleftherios Barlikas</p>
+    </footer>
+
+    <script src="js/validation.js"></script>
+</body>
+
+</html>

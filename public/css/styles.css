@@ -1,0 +1,559 @@
+/* For the resolutions we used 720x1080 for phones, 1024x768 for tablets
+and 1920x1080 for desktops. */
+
+/* TO-DO:
+    -add gradient in the header
+*/
+/* Add custom font from file */
+@font-face {
+    font-family: 'FA';
+    src: url('fa-regular-400.woff2') format('woff2');
+}
+
+/* Theme for the body of all pages */
+body {
+    background-color: #343a40; /* Change the color of the body */
+    font-family: 'ArialMT', sans-serif; /* Change the font of the body */
+}
+
+/* Theme for the header of all pages */
+h2 {
+    color: #000000;
+    text-align: center; /* Center the text */
+}
+
+/* Theme for the header of all pages (only used for the index page for now) */
+header {
+    background-color: #343a40;
+    color: #fff; /* Change the text's color */
+    text-align: center;
+    padding: 10px; /* Add padding to the header */
+    font-family: 'FA'; /* Change font for the text below the logo */
+}
+
+/* Theme for the header of all pages except the index page */
+.header-not-index {
+    text-align: left;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Center items horizontally */
+}
+
+/* Set different image sizes for the logo on all pages except index page */
+.header-not-index #logo {
+    width: 60px;
+    height: auto /* Maintain aspect ratio */;
+}
+
+/* Set different image sizes for the logo on the index page */
+header #logo {
+    width: 200px; 
+    height: auto;
+    border-radius: 50%; /* Make the logo round */
+    margin-top: 10px; /* Add margin to the top of the logo */
+}
+
+/* Theme for the navigation bar */
+nav {
+    background-color: #343a40;
+    padding: 1rem 0; /* Add padding to the top and bottom of the navigation bar */
+    font-family: 'ArialMT', sans-serif; /* Change the font of the body */
+
+}
+
+/* Theme for unordered list */
+nav ul {
+    display: flex; /* Display the list horizontally */
+    justify-content: center; /* Center the list horizontally */
+}
+
+/* Theme for unordered list */
+ul {
+    list-style: none; /* Remove the bullets from the list */
+}
+
+
+/* Change the look of the non index header on screens smaller than 1024px (phones) */
+@media (max-width: 1023px) {
+    .header-not-index {
+        flex-direction: column; /* Stack items vertically (on 720px it may look fine, though on smaller screens it shall be vertically (better safe than sorry)*/
+    }
+
+    nav ul {
+        display: flex;
+        justify-content: center;
+        padding: 0;
+    }
+
+    nav li {
+        margin:  10px;
+    }
+
+    /* Hide text and show only icons for better results*/
+    nav span {
+        display: none;
+    }
+
+    nav img {
+        width: 20px; /* Adjust the width of the icon as needed */
+    }
+
+    /* Hide the h1 on smaller screens */
+    .header-not-index h1 {
+        display: none;  
+    }
+
+}
+
+/* Change the look of the links on navigation bar */
+nav a {
+    text-decoration: none; /* Hide the underline from the links */
+    color: #fff;
+    display: flex; /* Display the icons and their labels horizontally */
+    flex-direction: column; /* Stack items vertically (icon top and text below icon)*/
+    align-items: center; 
+    padding: 1.5rem; /* Add padding to the links */
+    margin: 0 0.5rem; /* Add margin to the links */ 
+    border-radius: 5px; /* Add rounded corners to the links when hovered */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Add transition to the links */
+}
+
+/* Change the look of the images on the navigation bar */
+nav img {
+    width: 30px; /* Adjust the width of the icon as needed */
+    margin-bottom: 15px;
+}
+
+/* Change the look of the links when hovered */
+nav a:hover {
+    background-color: #6c757d;
+    color: #0056b3;
+}
+
+article a:hover{
+    background-color:#ffffff;
+    color:#31261c;
+}
+
+/* Change the general look of all the sections from the pages */
+section {
+    max-width: 60%; /* Adjust the width of the section as needed */
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add shadow to the section */
+    border-radius: 5px; /* Add rounded corners to the section */
+    text-align: left;
+}
+
+
+
+/* Media query for medium and small screens */
+@media (max-width: 1300px) {
+    section {
+        max-width: 90%;
+    }
+}
+
+/* Custom format for images in the sections */
+section img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 2px;
+}
+
+/* Custom theme for the links in the categories page */
+a {
+    text-decoration: none; /* Hide the underline from the links */
+    color: rgb(33, 84, 194);
+    display: flex; /* Display the icons and their labels horizontally */
+    flex-direction: column; /* Stack items vertically (icon top and text below icon)*/
+    align-items: center; 
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 5px; /* Add rounded corners to the links when hovered */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Add transition to the links */
+}
+
+/* Change the look of the links when hovered */
+a:hover {
+    background-color: #6c757d;
+    color: #ffffff;
+}
+
+/* Custom format for the faq section in index page */
+.faq-section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* Left text align for the details in faq */
+.faq-section details{
+    text-align: left; 
+}
+
+/* Custom theme for the section in the rentals pages */
+.rentals-section {
+    display: grid; /* Display the articles in a grid */
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* Set the width of the columns */
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Custom format for the images in the rentals sections */
+.rentals-section img {
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+}
+
+/* Custom theme for the articles in the rentals pages */
+.rentals-section article {
+    width: 100%;
+    box-sizing: border-box; /* Ensure padding and border are included in the width */
+    text-align: center;
+    border: 2px solid #343a40;
+    border-radius: 2%;
+    padding: 10px;
+    height: 100%;
+}
+
+/* Custom theme for the h2 in the rentals section  */
+.rentals-section h2 {
+    grid-column: 1 / -1; /* Expand the element across all columns starting from the first column to the last column */
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Smaller images in the rentals section */
+.rentals-section img {
+    width: 60%;
+    height: auto;
+    border-radius: 1%;
+}
+
+/* Theme for the rentals details */
+.rentals-details {
+    display: flex;
+    justify-content: space-between; /* Add space between the images and the details */
+    flex-wrap: wrap; /* Wrap the images and the details */
+    text-align: left;
+}
+
+/* Fix visuals for the rentals details */
+.rentals-details h3,
+.rentals-details p,
+.rentals-details table,
+.rentals-details .price-change {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Custom theme for the small images below the main image in the rentals details */
+.rentals-details .small-img {
+    width: 23%;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    border-radius: 2%
+}
+
+/* Custom theme for the large image in the rentals details */
+.rentals-details .large-img {
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    height: auto;
+    border-radius: 2%;
+    margin-bottom: 10px;
+}
+
+/* New theme for the categories (previously used the about-section) */
+.categories-section{
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+/* Custom theme for the categories images */
+.categories-section img{
+    width: 100px;
+    height: auto;
+    padding-left: 15%;
+}
+
+/* Custom theme for the categories text to center it */
+.categories-section h2{
+    padding-right: 8%;
+}
+/* Custom theme for the categories text to center it */
+.categories-section h3{
+    padding-left: 15%;
+}
+
+/* Custom section theme for the about page */
+.about-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* Allow items to be side by side if the screen is large enough */
+.flex-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+/* Add some margin for better spacing */
+.about-section article {
+    width: 350px;
+    margin: 0 50px;
+}
+
+/* Media query for small screens, align items vertically */
+@media (width: 720px) {
+    .flex-container {
+        flex-direction: column; /* Stack items vertically */
+        align-items: center;/* Center items horizontally */ 
+    }
+
+    .about-section article {
+        margin: 0; /* Remove horizontal margin for stacked layout */
+    }
+}
+
+/* Custom size for the avatars in about-us page */
+.avatar {
+    width: 250px;
+    height: auto;
+}
+
+/* Custom theme for the footer */
+footer {
+    background-color: #343a40;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+}
+
+footer p {
+    margin: 0; /* Remove default margin */
+    
+}
+
+/* Flex usage for the footer */
+footer nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Theme for the footer icons/links */
+footer nav a {
+    width: 80px;
+    text-align: center;
+    display: inline-block;
+    margin: 0 5px;
+}
+
+/* Align everything in the communication form in the middle */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Theme for the labels of the communication form */
+form label {
+    display: block;
+    margin: 10px 0;
+}
+
+/* Theme for the inputs of the communication form */
+form input,
+form textarea {
+    width: 50%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Theme for the submit button of the communication form */
+form input[type="submit"] {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* Theme for the submit button of the communication form when hovered */
+form input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+/* Theme for the table in the rentals details page */
+table {
+    border-collapse: collapse; /* Collapse borders */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Add shadow to the table */
+}
+
+th,
+td {
+    border: 1px solid #343a40; /* Color outline */
+    padding: 10px;
+    text-align: center;
+}
+
+/* Theme for the registration form */
+.registration-form {
+    max-width: 60%;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Media query for phone screens */
+@media (max-width: 720px) {
+    .registration-form {
+        max-width: 90%;
+    }
+    
+}
+
+/* Media query for tablet screens */
+@media (width: 1024px) {
+    .registration-form {
+        max-width: 90%;
+    }
+    
+}
+
+/* Media query for 1080p/2, else it's 60% width on window managers (hyprland + sway) */
+@media (max-width:1300px){
+    .registration-form {
+        max-width: 90%;
+    }
+
+}
+
+/* Theme for the fieldset in the registration form */
+.registration-form fieldset {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box; /* Ensure padding and border are included in the width */
+    width: 90%;
+}
+
+/* Theme for the legend (text above the fieldset) in the registration form */
+.registration-form legend {
+    font-weight: bold;
+    color: #555;
+}
+
+/* Theme for the input fields in the registration form */
+.registration-form input[type="text"],
+.registration-form input[type="email"],
+.registration-form input[type="tel"],
+.registration-form input[type="date"],
+.registration-form input[type="password"],
+.registration-form textarea {
+    width: calc(100% - 20px); /* Make the a little smaller than the fieldset */
+    padding: 8px;
+    margin-bottom: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+
+fieldset {
+    width: 60%;
+    margin: 20px auto;
+    text-align: left;
+}
+
+/* Theme for the labels in the registration form */
+label,
+select {
+    margin-bottom: 10px;
+    display: block;
+}
+
+/* Used in the javascript for the registration form */
+#subcategoryDropdown {
+    display: none;
+}
+
+/* Theme for the select in the registration form */
+select {
+    width: calc(100% - 20px); /* Match the input fields below */
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+
+.fieldset-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+/* Theme for the checkbox options in the registration form */
+.checkbox-option {
+    display: flex;
+    align-items: center;
+    width: 50%;
+    margin-bottom: 10px;
+}
+
+/* Theme for the box of the checkbox options in the registration form */
+.checkbox-option input[type="checkbox"] {
+    width: 15px;
+    height: 15px;
+    margin-right: 5px;
+}
+
+/* Grid layout to have checkboxes side by side */
+.fieldset-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+}
+
+/* Style for the details element */
+details {
+    border: 1px solid #ddd;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    width: 90%;
+}
+
+/* Style for the summary (the clickable part) */
+summary {
+    cursor: pointer;
+    font-weight: bold;
+    color: #555;
+}
+
+/* Style for the content inside details */
+details fieldset {
+    margin-top: 20px;
+}
+

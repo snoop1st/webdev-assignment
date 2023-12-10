@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="el">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EasyFind</title>
+    <link rel="shortcut icon" href="images/logo-c.png" type="image/x-icon">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/category-template.hbs"></script>
+    <script src="category-template.js" defer></script>
+    <script src="js/dynamic-index-categories.js" defer></script>
+</head>
+
+<body>
+
+    <header>
+        <img id="logo" src="images/logo.png" alt="logo">
+        <h1>EasyFind</h1>
+        <nav>
+            <ul>
+                <li>
+                    <a href="index.html">
+                        <img src="images/home-icon.png" alt="Home">
+                        <span>Αρχική</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="categories.html">
+                        <img src="images/categories-icon.png" alt="Categories">
+                        <span>Κατηγορίες</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="about-us.html">
+                        <img src="images/about-icon.png" alt="About Us">
+                        <span>Ποιοι Είμαστε</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="contact.html">
+                        <img src="images/contact-icon.png" alt="Contact">
+                        <span>Επικοινωνία</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="registration.html">
+                        <img src="images/login-icon.png" alt="Login">
+                        <span>Εγγραφή</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+
+    <section>
+        <h2>Δωρεάν αναζήτηση και καταχώρηση αγγελιών</h2>
+        <p>Βρείτε τις καλύτερες αγγελίες για ακίνητα και οχήματα. Αν επιθυμείτε να καταχωρήσετε αγγελίες, βρείτε εύκολα
+            πελάτες στην καλύτερη πλατφόρμα για αγγελίες.</p>
+    </section>
+    <section id="categories-section">
+        <h2>Κατηγορίες Αγγελιών</h2>
+        <div id="dynamic-categories" class="flex-container">
+            <!-- Εδώ θα εμφανίζονται δυναμικά οι κατηγορίες -->
+        </div>
+    </section>
+
+    <section class="faq-section">
+        <h2>Συχνές ερωτήσεις</h2>
+        <details open>
+            <summary>Πώς μπορώ να αναζητήσω αγγελίες στο EasyFind;</summary>
+            <p>Βρες εύκολα την αγγελία που αναζητείς πηγαίνοντας στις κατηγορίες και επιλέγοντας την κατηγορία που
+                επιθυμείς. Έπειτα για όποια αγγελία ενδιαφέρεσαι επέλεξε να δείς περισσότερες λεπτομέρεις αναφορικά με
+                την αγγελία.</p>
+        </details>
+        <details>
+            <summary>Πώς μπορώ να δημιουργήσω μια αγγελία;</summary>
+            <p>Για να δημιουργήσετε μια αγγελία πρέπει να εγγραφείτε και μετά να καταχωρήσετε την αγγελία.</p>
+        </details>
+        <details>
+            <summary>Πώς μπορώ να επικοινωνήσω με την EasyFind;</summary>
+            <p>Μπορείτε να επικοινωνήσετε μαζί μας στα κοινωνικά μας δίκτυα στο κάτω μέρος της σελίδας, ή μέσω
+                συμπλήρωσης φόρμας επικοινωνίας στο πάνω μενού της σελίδας.</p>
+        </details>
+    </section>
+
+    <footer>
+        <nav>
+            <a href="https://facebook.com">
+                <img src="images/fb.png" alt="fb">
+            </a>
+            <a href="https://x.com">
+                <img src="images/twitter.png" alt="twitter">
+            </a>
+            <a href="https://instagram.com">
+                <img src="images/insta.png" alt="instagram">
+            </a>
+        </nav>
+        <p>&copy; 2023 Nikolaos Sokolis & Eleftherios Barlikas</p>
+    </footer>
+
+
+    
+
+</body>
+
+</html>
