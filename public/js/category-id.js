@@ -43,9 +43,12 @@ function getCategoryFilenames(categoryId) {
         case 'ενοικιάσεις επαγγελματικών χώρων':
             return ['commercial-rentals.html'];
         // Add more cases for other categories
+        case null:
+            // Handle null category (category.html with no id) show articles from all categories
+            return ['car-rentals.html', 'boat-rentals.html', 'home-rentals.html', 'commercial-rentals.html'];
         default:
             // Handle unknown category
-            return [];
+            return [under-construction.html];
     }
 }
 
