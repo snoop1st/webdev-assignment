@@ -29,6 +29,10 @@ node index.js
 ```
 nodemon index.js
 ```
+Για αυτόματο refresh στον browser μόλις γίνουν αλλαγές τρέξτε:
+```
+browser-sync start --proxy "localhost:8080" --files "public/*.html, public/css/*.css, public/js/*.js"
+```
 
 Κάθε φορά που αλλάζετε τον κώδικα του server, το nodemon επανεκκινεί αυτόματα τον server.
 
