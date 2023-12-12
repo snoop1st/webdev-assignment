@@ -99,8 +99,7 @@ function getCategoryTitleFromId(categoryId) {
         case 'ενοικιάσεις επαγγελματικών χώρων':
             return 'Ενοικιάσεις Επαγγελματικών Χώρων';
         default:
-            // Handle unknown category
-            return 'Ενοικιάσεις';
+            return;
     }
 }
 
