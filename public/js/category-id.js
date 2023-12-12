@@ -90,6 +90,14 @@ function getCategoryTitleFromId(categoryId) {
         case 'ακίνητα':
             return 'Ενοικιάσεις Ακινήτων';
         // Add more cases for other categories
+        case 'ενοικιάσεις αυτοκινήτων':
+            return 'Ενοικιάσεις Αυτοκινήτων';
+        case 'ενοικιάσεις σκαφών':
+            return 'Ενοικιάσεις Σκαφών';
+        case 'ενοικιάσεις κατοικιών':
+            return 'Ενοικιάσεις Κατοικιών';
+        case 'ενοικιάσεις επαγγελματικών χώρων':
+            return 'Ενοικιάσεις Επαγγελματικών Χώρων';
         default:
             // Handle unknown category
             return 'Ενοικιάσεις';
