@@ -25,8 +25,40 @@ function fetchCategoryArticles(categoryId) {
         .then(categoryHtmls => {
             console.log('Fetched HTMLs for Category ID:', categoryId);
             displayCategoryArticles(categoryId, categoryHtmls);
+            initializeImageCarousel();
         });
 }
+
+function initializeImageCarousel() {
+    const imageCarousels = document.querySelectorAll('.image-carousel');
+
+    imageCarousels.forEach(carousel => {
+        let slideIndex = 0;
+
+        function changeSlide(n) {
+            showSlide(slideIndex += n, carousel);
+        }
+
+        function showSlide(index, carousel) {
+            const images = carousel.querySelectorAll('.carousel-image');
+            slideIndex = (index + images.length) % images.length;
+
+            images.forEach((image, i) => {
+                image.style.display = i === slideIndex ? 'block' : 'none';
+            });
+        }
+
+        const prevButtons = carousel.querySelectorAll('.prev');
+        const nextButtons = carousel.querySelectorAll('.next');
+
+        prevButtons.forEach(button => button.addEventListener('click', () => changeSlide(-1)));
+        nextButtons.forEach(button => button.addEventListener('click', () => changeSlide(1)));
+
+        // Initialize with the first image
+        showSlide(0, carousel);
+    });
+}
+
 
 function getCategoryFilenames(categoryId) {
     switch (categoryId) {
@@ -80,6 +112,7 @@ function displayCategoryArticles(categoryId, categoryHtmls) {
 
     categoryArticles.forEach(article => {
         rentalsSection.appendChild(article.cloneNode(true));
+
     });
 }
 

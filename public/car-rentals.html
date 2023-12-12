@@ -7,6 +7,7 @@
     <title>Ενοικιάσεις Αυτοκινήτων</title>
     <link rel="shortcut icon" href="images/logo-c.png" type="image/x-icon">
     <link rel="stylesheet" href="css/styles.css">
+    <script src="js/cycle-images-buttons.js"></script>
 </head>
 
 <body>
@@ -51,50 +52,81 @@
 
     <section class="rentals-section">
         <h2>Ενοικιάσεις Αυτοκινήτων</h2>
-        <article>
+        <article class="carousel-article">
             <h3>Toyota Yaris Hybrid 2023</h3>
-            <img src="images/car-rentals/car1.jpg" alt="Ενοικιαζόμενο Αυτοκίνητο">
+            <div class="image-carousel">
+                <img src="images/car-rentals/car1.jpg" alt="Ενοικιαζόμενο Αυτοκίνητο" class="carousel-image">
+                <img src="images/car-rentals/car1/car1-back.jpg" alt="Ενοικιαζόμενο Αυτοκίνητο" class="carousel-image">   
+                <img src="images/car-rentals/car1/car1-interior.webp" alt="Ενοικιαζόμενο Αυτοκίνητο" class="carousel-image">
+                <button class="prev" onclick="changeSlide(-1)">&#10094;</button>
+                <button class="next" onclick="changeSlide(1)">&#10095;</button>
+            </div>
             <p>Κωδικός 001</p>
             <p>Οικονομικό αυτοκίνητο με χαμηλή κατανάλωση. Ιδανικό για καθημερινή χρήση.</p>
             <p>Κόστος: 40€/ημέρα</p>
             <p>Αναρτήθηκε: 15/10/2023</p>
-            <p>Κωδικός Αγγελίας: 2134</p>
             <a href="car-rentals-001-details.html">Περισσότερες Πληροφορίες</a>
         </article>
 
-        <article>
+        <article class="carousel-article">
             <h3>Opel Insignia 2023-2024 </h3>
-            <img src="images/car-rentals/car2.jpg" alt="Ενοικιαζόμενο Αυτοκίνητο">
+            <div class="image-carousel">
+                <img src="images/car-rentals/car2.jpg" alt="Ενοικιαζόμενο Αυτοκίνητο" class="carousel-image">
+                <img src="images/car-rentals/car2/car2-back.jpg" alt="Ενοικιαζόμενο Αυτοκίνητο" class="carousel-image">   
+                <img src="images/car-rentals/car2/car2-interior.jpg" alt="Ενοικιαζόμενο Αυτοκίνητο" class="carousel-image">
+                <button class="prev" onclick="changeSlide(-1)">&#10094;</button>
+                <button class="next" onclick="changeSlide(1)">&#10095;</button>
+            </div>
             <p>Κωδικός 002</p>
             <p>Μεγάλο αυτοκίνητο με πολλές ανέσεις, ιδανικό για οικογένειες.</p>
             <p>Κόστος: 90€/ημέρα</p>
             <p>Αναρτήθηκε: 14/9/2023</p>
             <a href="car-rentals-002-details.html">Περισσότερες Πληροφορίες</a>
         </article>
-
-        <article>
+        
+        <article class="carousel-article">
             <h3>Jeep Gladiator 2022</h3>
-            <img src="images/car-rentals/car3.jpg" alt="Ενοικιαζόμενο Αυτοκίνητο">
+            <div class="image-carousel">
+                <img src="images/car-rentals/car4.jpg" alt="Ενοικιαζόμενο Αυτοκίνητο" class="carousel-image">
+                <img src="images/car-rentals/car4/car3-back.jpg" alt="Ενοικιαζόμενο Αυτοκίνητο" class="carousel-image"> 
+                <img src="images/car-rentals/car4/car3-interior.jpg" alt="Ενοικιαζόμενο Αυτοκίνητο" class="carousel-image">     
+                <button class="prev" onclick="changeSlide(-1)">&#10094;</button>
+                <button class="next" onclick="changeSlide(1)">&#10095;</button>
+            </div>
             <p>Κωδικός 003</p>
             <p>Το καλύτερο αμάξι για να μην αποφεύγετε τις λακούβες των δρόμων. Πατήστε τις λακούβες άφοβα.</p>
             <p>Κόστος: 120€/ημέρα</p>
             <p>Αναρτήθηκε: 12/8/2023</p>
             <a href="car-rentals-003-details.html">Περισσότερες Πληροφορίες</a>
         </article>
-
-        <article>
+        
+        <article class="carousel-article">
             <h3>Toyota AE86 1985</h3>
-            <img src="images/car-rentals/car4.jpg" alt="Ενοικιαζόμενο Αυτοκίνητο">
+            <div class="image-carousel">
+                <img src="images/car-rentals/car3.jpg" alt="Ενοικιαζόμενο Αυτοκίνητο" class="carousel-image">
+                <img src="images/car-rentals/car3/car4-engine.jpg" alt="Ενοικιαζόμενο Αυτοκίνητο" class="carousel-image"> 
+                <img src="images/car-rentals/car3/car4-interior.jpg" alt="Ενοικιαζόμενο Αυτοκίνητο" class="carousel-image">   
+                <img src="images/car-rentals/car3/car4-seats.jpg" alt="Ενοικιαζόμενο Αυτοκίνητο" class="carousel-image">  
+                <img src="images/car-rentals/car3/car4-wheel.jpg" alt="Ενοικιαζόμενο Αυτοκίνητο" class="carousel-image">      
+                <button class="prev" onclick="changeSlide(-1)">&#10094;</button>
+                <button class="next" onclick="changeSlide(1)">&#10095;</button>
+            </div>
             <p>Κωδικός 004</p>
             <p>Αυτοκίνητο ιδανικό για ντελίβερι τόφου.</p>
             <p>Κόστος: 420€/ημέρα</p>
             <p>Αναρτήθηκε: 20/4/2023</p>
             <a href="car-rentals-004-details.html">Περισσότερες Πληροφορίες</a>
         </article>
-
-        <article>
+        
+        <article class="carousel-article">
             <h3>Tesla Model S</h3>
-            <img src="images/car-rentals/car5.jpg" alt="Ενοικιαζόμενο Αυτοκίνητο">
+            <div class="image-carousel">
+                <img src="images/car-rentals/car5.jpg" alt="Ενοικιαζόμενο Αυτοκίνητο" class="carousel-image">
+                <img src="images/car-rentals/car5/car5-interior.jpg" alt="Ενοικιαζόμενο Αυτοκίνητο" class="carousel-image">   
+                <img src="images/car-rentals/car5/car5-back.jpg" alt="Ενοικιαζόμενο Αυτοκίνητο" class="carousel-image">   
+                <button class="prev" onclick="changeSlide(-1)">&#10094;</button>
+                <button class="next" onclick="changeSlide(1)">&#10095;</button>
+            </div>
             <p>Κωδικός 005</p>
             <p>Τάμπλετ με ρόδες το αποκαλλούν πολλοί, αν αμφιβάλλετε για τις οδηγικές ικανότητες σας και σας ενδιαφέρουν
                 features που υπολειτουργούν και είναι άχρηστα δεν χρειάζεται να συνεχίσετε την αναζήτηση για ενοικίαση
@@ -103,6 +135,7 @@
             <p>Αναρτήθηκε: 4/7/2023</p>
             <a href="car-rentals-005-details.html">Περισσότερες Πληροφορίες</a>
         </article>
+        
 
     </section>
 
