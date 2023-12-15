@@ -1,3 +1,11 @@
+const featuresData = {
+    "001": "Engine cc: 1500; Transmission: Manual; Seats: 5; Doors: 5; Fuel: Petrol; Cost: 40€/day",
+    "002": "Engine cc: 2000; Transmission: Automatic; Seats: 5; Doors: 5; Fuel: Petrol; Cost: 90€/day",
+    "003": "Engine cc: 4000; Transmission: Automatic; Seats: 5; Doors: 5; Fuel: Petrol; Cost: 70€/day",
+    "004": "Engine cc: 1600; Transmission: Manual; Seats: 5; Doors: 3; Fuel: Petrol; Cost: 420€/day",
+    "005": "Engine cc: 0; Transmission: Automatic; Seats: 5; Doors: 5; Fuel: Electric; Cost: 1€/day"
+};
+
 document.addEventListener('DOMContentLoaded', function () {
     const categoryId = getParameterByName('id');
     console.log('Selected Category ID:', categoryId);
@@ -14,19 +22,38 @@ function fetchCategoryArticles(categoryId) {
     const categoryFilenames = getCategoryFilenames(categoryId);
     console.log('Category Filenames:', categoryFilenames);
 
-    Promise.all(categoryFilenames.map(filename =>
-        fetch(filename)
-            .then(response => response.text())
-            .catch(error => {
-                console.error(`Error fetching category HTML for ${filename}:`, error);
-                return null;
-            })
-    ))
-        .then(categoryHtmls => {
-            console.log('Fetched HTMLs for Category ID:', categoryId);
-            displayCategoryArticles(categoryId, categoryHtmls);
-            initializeImageCarousel();
-        });
+    if (categoryId === 'ενοικιάσεις αυτοκινήτων') {
+        const categoryFilenames = getCategoryFilenames(categoryId);
+        console.log('Category Filenames:', categoryFilenames);
+
+        Promise.all(categoryFilenames.map(filename =>
+            fetch(filename)
+                .then(response => response.text())
+                .catch(error => {
+                    console.error(`Error fetching category HTML for ${filename}:`, error);
+                    return null;
+                })
+        ))
+            .then(categoryHtmls => {
+                console.log('Fetched HTMLs for Category ID:', categoryId);
+                displayCategoryArticles(categoryId, categoryHtmls);
+                initializeImageCarousel();
+            });
+    } else {
+        Promise.all(categoryFilenames.map(filename =>
+            fetch(filename)
+                .then(response => response.text())
+                .catch(error => {
+                    console.error(`Error fetching category HTML for ${filename}:`, error);
+                    return null;
+                })
+        ))
+            .then(categoryHtmls => {
+                console.log('Fetched HTMLs for Category ID:', categoryId);
+                displayCategoryArticles(categoryId, categoryHtmls);
+                initializeImageCarousel();
+            });
+    }
 }
 
 function initializeImageCarousel() {
@@ -80,15 +107,50 @@ function getCategoryFilenames(categoryId) {
             return ['car-rentals.html', 'boat-rentals.html', 'home-rentals.html', 'commercial-rentals.html'];
         default:
             // Handle unknown category
-            return [under-construction.html];
+            return ['under-construction.html'];
     }
+}
+
+function createFeaturesTable(featuresString) {
+    const featuresArray = featuresString.split('; ');
+
+    const table = document.createElement('table');
+
+    featuresArray.forEach((feature) => {
+        const [featureName, featureValue] = feature.split(': ');
+
+        const row = table.insertRow();
+        const cell1 = row.insertCell(0);
+        const cell2 = row.insertCell(1);
+
+        cell1.innerHTML = featureName;
+        cell2.innerHTML = featureValue;
+    });
+
+    return table;
 }
 
 function displayCategoryArticles(categoryId, categoryHtmls) {
     console.log('Displaying articles for Category HTMLs:', categoryHtmls);
     const parser = new DOMParser();
     const categoryArticles = categoryHtmls.flatMap(categoryHtml => {
-        if (categoryHtml) {
+        if (categoryHtml && categoryId === 'ενοικιάσεις αυτοκινήτων') {
+            const categoryDoc = parser.parseFromString(categoryHtml, 'text/html');
+            const articles = Array.from(categoryDoc.querySelectorAll('article'));
+
+            // Loop through articles and append features
+            articles.forEach(article => {
+                const advertisementId = article.querySelector('p').textContent.trim().split(' ')[1];
+                const featuresString = featuresData[advertisementId];
+                const featuresTable = createFeaturesTable(featuresString);
+
+                // Append the features table to the article
+                const featuresTablePlaceholder = article.querySelector(`#features-table-${advertisementId}`);
+                featuresTablePlaceholder.appendChild(featuresTable);
+            });
+
+            return articles;
+        } else if (categoryHtml) {
             const categoryDoc = parser.parseFromString(categoryHtml, 'text/html');
             return Array.from(categoryDoc.querySelectorAll('article'));
         } else {
@@ -100,7 +162,6 @@ function displayCategoryArticles(categoryId, categoryHtmls) {
 
     const rentalsSection = document.querySelector('.rentals-section');
     rentalsSection.innerHTML = '';
-
     // Set the category title dynamically in the <h2> element
     const categoryTitle = getCategoryTitleFromId(categoryId);
     const categoryHeader = document.createElement('h2');
