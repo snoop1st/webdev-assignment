@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Mock data for testing
     const categories = [
-        // Your mock data here
     ];
 
     const templateData = { categories };

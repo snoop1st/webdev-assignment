@@ -60,8 +60,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function getCategoryID(categoryTitle) {
-        // Your logic to determine category ID based on category title
-        // For now, it simply converts to lowercase and adds "category-" prefix
         return categoryTitle.toLowerCase();
     }
 });

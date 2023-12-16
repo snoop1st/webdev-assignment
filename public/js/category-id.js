@@ -183,7 +183,6 @@ function getCategoryTitleFromId(categoryId) {
             return 'Ενοικιάσεις Οχημάτων';
         case 'ακίνητα':
             return 'Ενοικιάσεις Ακινήτων';
-        // Add more cases for other categories
         case 'ενοικιάσεις αυτοκινήτων':
             return 'Ενοικιάσεις Αυτοκινήτων';
         case 'ενοικιάσεις σκαφών':
