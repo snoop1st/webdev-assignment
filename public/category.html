@@ -7,6 +7,34 @@
     <link rel="shortcut icon" href="images/logo-c.png" type="image/x-icon">
     <link rel="stylesheet" href="css/styles.css">
     <script src="js/category-id.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const categoryId = getParameterByName('id');
+            console.log('Selected Category ID:', categoryId);
+    
+            const loginButton = document.getElementById('login-button');
+            loginButton.addEventListener('click', function () {
+                // Show the login popup
+                const loginPopup = document.getElementById('login-popup');
+                loginPopup.style.display = 'block';
+            });
+    
+            // Other existing code...
+        });
+    
+        // Existing functions...
+    
+        // Function to perform user login (you can use the loginUser function from the previous response)
+    
+        // Example usage
+        const loginForm = document.getElementById('login-form');
+        loginForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            loginUser(username, password);
+        });
+    </script>
 </head>
 
 <body>
@@ -46,11 +74,32 @@
                     </a>
                 </li>
             </ul>
+            <ul>
+                <li id="login-button">
+                    <a href="#">
+                        <img src="images/log-icon.png" alt="Login">
+                        <span>Σύνδεση</span>
+                    </a>
+                </li>
+            </ul>
+            
+            <div id="login-popup" class="login-popup">
+                <span class="close-button" onclick="closeLoginPopup()">&times;</span>
+                <form id="login-form">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required>
+            
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+            
+                    <button type="submit">Login</button>
+                </form>
+            </div>
+            
         </nav>
     </header>
     <section class="rentals-section">
         
-
         <!-- Dynamic content will be inserted here using JavaScript -->
 
     </section>
