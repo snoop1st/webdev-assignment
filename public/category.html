@@ -7,34 +7,7 @@
     <link rel="shortcut icon" href="images/logo-c.png" type="image/x-icon">
     <link rel="stylesheet" href="css/styles.css">
     <script src="js/category-id.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const categoryId = getParameterByName('id');
-            console.log('Selected Category ID:', categoryId);
-    
-            const loginButton = document.getElementById('login-button');
-            loginButton.addEventListener('click', function () {
-                // Show the login popup
-                const loginPopup = document.getElementById('login-popup');
-                loginPopup.style.display = 'block';
-            });
-    
-            // Other existing code...
-        });
-    
-        // Existing functions...
-    
-        // Function to perform user login (you can use the loginUser function from the previous response)
-    
-        // Example usage
-        const loginForm = document.getElementById('login-form');
-        loginForm.addEventListener('submit', function (event) {
-            event.preventDefault();
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            loginUser(username, password);
-        });
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/uuid@8.3.2/dist/umd/uuidv4.min.js"></script>
 </head>
 
 <body>
@@ -67,41 +40,38 @@
                         <span>Επικοινωνία</span>
                     </a>
                 </li>
-                <li>
-                    <a href="registration.html">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" onclick="openLoginPopup(event)">
                         <img src="images/login-icon.png" alt="Login">
-                        <span>Εγγραφή</span>
-                    </a>
-                </li>
-            </ul>
-            <ul>
-                <li id="login-button">
-                    <a href="#">
-                        <img src="images/log-icon.png" alt="Login">
                         <span>Σύνδεση</span>
                     </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="registration.html">Εγγραφή</a></li>
+                        <li><a href="#" onclick="openLoginPopup(event)">Σύνδεση</a></li>
+                    </ul>
                 </li>
             </ul>
-            
             <div id="login-popup" class="login-popup">
                 <span class="close-button" onclick="closeLoginPopup()">&times;</span>
                 <form id="login-form">
                     <label for="username">Username:</label>
                     <input type="text" id="username" name="username" required>
-            
+
                     <label for="password">Password:</label>
                     <input type="password" id="password" name="password" required>
-            
-                    <button type="submit">Login</button>
+
+                    <button type="button" onclick="login()">Login</button>
                 </form>
             </div>
-            
         </nav>
-    </header>
-    <section class="rentals-section">
-        
-        <!-- Dynamic content will be inserted here using JavaScript -->
+        <div id="user-info" style="display: none;">
+            Hello <span id="logged-username"></span>! Welcome to our website!
+        </div>
 
+    </header>
+
+    <section class="rentals-section">
+        <!-- Dynamic content will be inserted here using JavaScript -->
     </section>
 
     <footer>
@@ -119,9 +89,106 @@
         <p>&copy; 2023 Nikolaos Sokolis & Eleftherios Barlikas</p>
     </footer>
 
+    <script>
+        let loginPopupVisible = false; // Track the visibility of the login popup
 
-    
-    
+        document.addEventListener('DOMContentLoaded', function () {
+            // Add event listeners for closing the popup
+            const closeButton = document.querySelector('.close-button');
+            const loginPopup = document.getElementById('login-popup');
+
+            closeButton.addEventListener('click', closeLoginPopup);
+            document.addEventListener('keydown', function (event) {
+                if (event.key === 'Escape' && loginPopup.style.display === 'block') {
+                    closeLoginPopup();
+                }
+            });
+        });
+
+        function closeLoginPopup() {
+            document.getElementById('login-popup').style.display = 'none';
+            loginPopupVisible = false;
+        }
+
+        function openLoginPopup(event) {
+            event.preventDefault(); // Prevent the default behavior of the click event
+
+            document.getElementById('login-popup').style.display = 'block';
+            loginPopupVisible = true;
+        }
+
+        function login() {
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+
+    fetch('https://jsonplaceholder.typicode.com/users', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            username,
+            password,
+        }),
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Invalid credentials');
+            }
+            return response.json();
+        })
+        .then(data => {
+            let sessionId = getCookie(username + '_sessionId');
+
+            if (!sessionId) {
+                sessionId = uuidv4();
+                setCookie(username + '_sessionId', sessionId, 365); // Set the cookie to expire in 365 days
+            }
+
+            console.log('User UUID:', sessionId);
+
+            // Update the user-info section
+            const userInfo = document.getElementById('user-info');
+            const loggedUsername = document.getElementById('logged-username');
+            loggedUsername.textContent = username;
+            userInfo.style.display = 'block';
+
+            // Close the login popup after successful login
+            closeLoginPopup();
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Invalid credentials. Please try again.');
+        })
+        .finally(() => {
+            // Redirect to category.html
+            window.location.href = 'category.html?id=' + sessionId;
+        });
+}
+
+
+        // Function to set a cookie
+        function setCookie(name, value, days) {
+            const date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            const expires = 'expires=' + date.toUTCString();
+            document.cookie = name + '=' + value + '; ' + expires + '; path=/';
+        }
+
+        // Function to get a cookie value
+        function getCookie(name) {
+            const cookieName = name + '=';
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                let cookie = cookies[i].trim();
+                if (cookie.indexOf(cookieName) === 0) {
+                    return cookie.substring(cookieName.length, cookie.length);
+                }
+            }
+            return '';
+        }
+    </script>
+
 </body>
 
 </html>

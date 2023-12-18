@@ -17,7 +17,7 @@
             <ul>
                 <li>
                     <a href="index.html">
-                        <img src="images/home-icon.png" alt="commercial">
+                        <img src="images/home-icon.png" alt="Home">
                         <span>Αρχική</span>
                     </a>
                 </li>
@@ -39,35 +39,34 @@
                         <span>Επικοινωνία</span>
                     </a>
                 </li>
-                <li>
-                    <a href="registration.html">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" onclick="openLoginPopup(event)">
                         <img src="images/login-icon.png" alt="Login">
-                        <span>Εγγραφή</span>
-                    </a>
-                </li>
-            </ul>
-            <ul>
-                <li id="login-button">
-                    <a href="#">
-                        <img src="images/log-icon.png" alt="Login">
                         <span>Σύνδεση</span>
                     </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="registration.html">Εγγραφή</a></li>
+                        <li><a href="#" onclick="openLoginPopup(event)">Σύνδεση</a></li>
+                    </ul>
                 </li>
             </ul>
-            
             <div id="login-popup" class="login-popup">
                 <span class="close-button" onclick="closeLoginPopup()">&times;</span>
                 <form id="login-form">
                     <label for="username">Username:</label>
                     <input type="text" id="username" name="username" required>
-            
+
                     <label for="password">Password:</label>
                     <input type="password" id="password" name="password" required>
-            
-                    <button type="submit">Login</button>
+
+                    <button type="button" onclick="login()">Login</button>
                 </form>
             </div>
-        </nav>    
+        </nav>
+        <div id="user-info" style="display: none;">
+            Hello <span id="logged-username"></span>! Welcome to our website!
+        </div>
+
     </header>
 
     <section class="rentals-section">

@@ -13,7 +13,6 @@
 
     <header class="header-not-index">
         <img id="logo" src="images/logo.png" alt="logo">
-
         <nav>
             <ul>
                 <li>
@@ -40,35 +39,34 @@
                         <span>Επικοινωνία</span>
                     </a>
                 </li>
-                <li>
-                    <a href="registration.html">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" onclick="openLoginPopup(event)">
                         <img src="images/login-icon.png" alt="Login">
-                        <span>Εγγραφή</span>
-                    </a>
-                </li>
-            </ul>
-            <ul>
-                <li id="login-button">
-                    <a href="#">
-                        <img src="images/log-icon.png" alt="Login">
                         <span>Σύνδεση</span>
                     </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="registration.html">Εγγραφή</a></li>
+                        <li><a href="#" onclick="openLoginPopup(event)">Σύνδεση</a></li>
+                    </ul>
                 </li>
             </ul>
-            
             <div id="login-popup" class="login-popup">
                 <span class="close-button" onclick="closeLoginPopup()">&times;</span>
                 <form id="login-form">
                     <label for="username">Username:</label>
                     <input type="text" id="username" name="username" required>
-            
+
                     <label for="password">Password:</label>
                     <input type="password" id="password" name="password" required>
-            
-                    <button type="submit">Login</button>
+
+                    <button type="button" onclick="login()">Login</button>
                 </form>
             </div>
         </nav>
+        <div id="user-info" style="display: none;">
+            Hello <span id="logged-username"></span>! Welcome to our website!
+        </div>
+
     </header>
 
     <section class="categories-section">
@@ -78,7 +76,7 @@
                 <article>
                     <h3>Ακίνητα</h3>
                     <!--Change to some more generic icons for estate and vehicles-->
-                    <a href="category-estate.html">
+                    <a href="category.html?id=ακίνητα">
                         <img src="images/index-icon-category-estate.png" alt="Ακίνητα">
                     </a>
                     <ul>
@@ -90,16 +88,16 @@
             </div>
             <div class="categories-section">
                 <article>
-                <h3>Οχήματα</h3>
-                <!--Change to some more generic icons for estate and vehicles-->
-                <a href="category-vehicle.html">
-                    <img src="images/index-icon-category-car.png" alt="Αυτοκίνητα">
-                </a>
-                <ul>
-                    <li><a href="car-rentals.html">Ενοικιάσεις Αυτοκινήτων</a></li>
-                    <li><a href="boat-rentals.html">Ενοικιάσεις Σκαφών</a></li>
-                    <li><a href="under-construction.html">Ενοικιάσεις Επαγγελματικών Οχημάτων</a></li>
-                </ul>
+                    <h3>Οχήματα</h3>
+                    <!--Change to some more generic icons for estate and vehicles-->
+                    <a href="category.html?id=οχήματα">
+                        <img src="images/index-icon-category-car.png" alt="Αυτοκίνητα">
+                    </a>
+                    <ul>
+                        <li><a href="car-rentals.html">Ενοικιάσεις Αυτοκινήτων</a></li>
+                        <li><a href="boat-rentals.html">Ενοικιάσεις Σκαφών</a></li>
+                        <li><a href="under-construction.html">Ενοικιάσεις Επαγγελματικών Οχημάτων</a></li>
+                    </ul>
                 </article>
             </div>
 

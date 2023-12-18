@@ -8,27 +8,36 @@ and 1920x1080 for desktops. */
 
 /* Theme for the body of all pages */
 body {
-    background-color: #343a40; /* Change the color of the body */
-    font-family: 'ArialMT', sans-serif; /* Change the font of the body */
+    background-color: #343a40;
+    /* Change the color of the body */
+    font-family: 'ArialMT', sans-serif;
+    /* Change the font of the body */
 }
 
 /* Theme for the header of all pages */
 h2 {
     color: #000000;
-    text-align: center; /* Center the text */
+    text-align: center;
+    /* Center the text */
 }
 
 /* Theme for the header of all pages (only used for the index page for now) */
 header {
     background-color: #343a40;
-    color: #fff; /* Change the text's color */
+    color: #fff;
+    /* Change the text's color */
     text-align: center;
-    padding: 10px; /* Add padding to the header */
-    font-family: 'FA'; /* Change font for the text below the logo */
+    padding: 10px;
+    /* Add padding to the header */
+    font-family: 'FA';
+    /* Change font for the text below the logo */
 }
 
-.header-index{
-    background: linear-gradient(to top, #343a40, #4f545a); /* Gradient from gray to whitish */    color: #fff; /* Change the text's color */
+.header-index {
+    background: linear-gradient(to top, #343a40, #4f545a);
+    /* Gradient from gray to whitish */
+    color: #fff;
+    /* Change the text's color */
 }
 
 /* Theme for the header of all pages except the index page */
@@ -44,41 +53,51 @@ header {
 /* Set different image sizes for the logo on all pages except index page */
 .header-not-index #logo {
     width: 60px;
-    height: auto /* Maintain aspect ratio */;
+    height: auto
+        /* Maintain aspect ratio */
+    ;
 }
 
 /* Set different image sizes for the logo on the index page */
 header #logo {
-    width: 200px; 
+    width: 200px;
     height: auto;
-    border-radius: 50%; /* Make the logo round */
-    margin-top: 10px; /* Add margin to the top of the logo */
+    border-radius: 50%;
+    /* Make the logo round */
+    margin-top: 10px;
+    /* Add margin to the top of the logo */
 }
 
 /* Theme for the navigation bar */
 nav {
     background-color: #343a40;
-    padding: 1rem 0; /* Add padding to the top and bottom of the navigation bar */
-    font-family: 'ArialMT', sans-serif; /* Change the font of the body */
+    padding: 1rem 0;
+    /* Add padding to the top and bottom of the navigation bar */
+    font-family: 'ArialMT', sans-serif;
+    /* Change the font of the body */
 
 }
 
 /* Theme for unordered list */
 nav ul {
-    display: flex; /* Display the list horizontally */
-    justify-content: center; /* Center the list horizontally */
+    display: flex;
+    /* Display the list horizontally */
+    justify-content: center;
+    /* Center the list horizontally */
 }
 
 /* Theme for unordered list */
 ul {
-    list-style: none; /* Remove the bullets from the list */
+    list-style: none;
+    /* Remove the bullets from the list */
 }
 
 
 /* Change the look of the non index header on screens smaller than 1024px (phones) */
 @media (max-width: 1023px) {
     .header-not-index {
-        flex-direction: column; /* Stack items vertically (on 720px it may look fine, though on smaller screens it shall be vertically (better safe than sorry)*/
+        flex-direction: column;
+        /* Stack items vertically (on 720px it may look fine, though on smaller screens it shall be vertically (better safe than sorry)*/
     }
 
     nav ul {
@@ -88,7 +107,7 @@ ul {
     }
 
     nav li {
-        margin:  10px;
+        margin: 10px;
     }
 
     /* Hide text and show only icons for better results*/
@@ -97,32 +116,41 @@ ul {
     }
 
     nav img {
-        width: 20px; /* Adjust the width of the icon as needed */
+        width: 20px;
+        /* Adjust the width of the icon as needed */
     }
 
     /* Hide the h1 on smaller screens */
     .header-not-index h1 {
-        display: none;  
+        display: none;
     }
 
 }
 
 /* Change the look of the links on navigation bar */
 nav a {
-    text-decoration: none; /* Hide the underline from the links */
+    text-decoration: none;
+    /* Hide the underline from the links */
     color: #fff;
-    display: flex; /* Display the icons and their labels horizontally */
-    flex-direction: column; /* Stack items vertically (icon top and text below icon)*/
-    align-items: center; 
-    padding: 1.5rem; /* Add padding to the links */
-    margin: 0 0.5rem; /* Add margin to the links */ 
-    border-radius: 5px; /* Add rounded corners to the links when hovered */
-    transition: background-color 0.3s ease, color 0.3s ease; /* Add transition to the links */
+    display: flex;
+    /* Display the icons and their labels horizontally */
+    flex-direction: column;
+    /* Stack items vertically (icon top and text below icon)*/
+    align-items: center;
+    padding: 1.5rem;
+    /* Add padding to the links */
+    margin: 0 0.5rem;
+    /* Add margin to the links */
+    border-radius: 5px;
+    /* Add rounded corners to the links when hovered */
+    transition: background-color 0.3s ease, color 0.3s ease;
+    /* Add transition to the links */
 }
 
 /* Change the look of the images on the navigation bar */
 nav img {
-    width: 30px; /* Adjust the width of the icon as needed */
+    width: 30px;
+    /* Adjust the width of the icon as needed */
     margin-bottom: 15px;
 }
 
@@ -132,21 +160,24 @@ nav a:hover {
     color: #0056b3;
 }
 
-article a:hover{
-    background-color:#ffffff;
-    color:#31261c;
+article a:hover {
+    background-color: #ffffff;
+    color: #31261c;
 }
 
 
 
 /* Change the general look of all the sections from the pages */
 section {
-    max-width: 60%; /* Adjust the width of the section as needed */
+    max-width: 60%;
+    /* Adjust the width of the section as needed */
     margin: 20px auto;
     padding: 20px;
     background-color: #ffffff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add shadow to the section */
-    border-radius: 5px; /* Add rounded corners to the section */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* Add shadow to the section */
+    border-radius: 5px;
+    /* Add rounded corners to the section */
     text-align: left;
 }
 
@@ -168,15 +199,20 @@ section img {
 
 /* Custom theme for the links in the categories page */
 a {
-    text-decoration: none; /* Hide the underline from the links */
+    text-decoration: none;
+    /* Hide the underline from the links */
     color: rgb(33, 84, 194);
-    display: flex; /* Display the icons and their labels horizontally */
-    flex-direction: column; /* Stack items vertically (icon top and text below icon)*/
-    align-items: center; 
+    display: flex;
+    /* Display the icons and their labels horizontally */
+    flex-direction: column;
+    /* Stack items vertically (icon top and text below icon)*/
+    align-items: center;
     padding-top: 10px;
     padding-bottom: 10px;
-    border-radius: 5px; /* Add rounded corners to the links when hovered */
-    transition: background-color 0.3s ease, color 0.3s ease; /* Add transition to the links */
+    border-radius: 5px;
+    /* Add rounded corners to the links when hovered */
+    transition: background-color 0.3s ease, color 0.3s ease;
+    /* Add transition to the links */
 }
 
 /* Change the look of the links when hovered */
@@ -186,7 +222,7 @@ a:hover {
 }
 
 /* Custom format for the faq section in index page */
-.faq-section{
+.faq-section {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -194,14 +230,16 @@ a:hover {
 }
 
 /* Left text align for the details in faq */
-.faq-section details{
-    text-align: left; 
+.faq-section details {
+    text-align: left;
 }
 
 /* Custom theme for the section in the rentals pages */
 .rentals-section {
-    display: grid; /* Display the articles in a grid */
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* Set the width of the columns */
+    display: grid;
+    /* Display the articles in a grid */
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    /* Set the width of the columns */
     gap: 20px;
     justify-content: center;
     align-items: center;
@@ -217,7 +255,8 @@ a:hover {
 /* Custom theme for the articles in the rentals pages */
 .rentals-section article {
     width: 100%;
-    box-sizing: border-box; /* Ensure padding and border are included in the width */
+    box-sizing: border-box;
+    /* Ensure padding and border are included in the width */
     text-align: center;
     border: 2px solid #343a40;
     border-radius: 2%;
@@ -227,7 +266,8 @@ a:hover {
 
 /* Custom theme for the h2 in the rentals section  */
 .rentals-section h2 {
-    grid-column: 1 / -1; /* Expand the element across all columns starting from the first column to the last column */
+    grid-column: 1 / -1;
+    /* Expand the element across all columns starting from the first column to the last column */
     margin-bottom: 20px;
     text-align: center;
 }
@@ -242,8 +282,10 @@ a:hover {
 /* Theme for the rentals details */
 .rentals-details {
     display: flex;
-    justify-content: space-between; /* Add space between the images and the details */
-    flex-wrap: wrap; /* Wrap the images and the details */
+    justify-content: space-between;
+    /* Add space between the images and the details */
+    flex-wrap: wrap;
+    /* Wrap the images and the details */
     text-align: left;
 }
 
@@ -275,25 +317,26 @@ a:hover {
 }
 
 /* New theme for the categories (previously used the about-section) */
-.categories-section{
+.categories-section {
     display: flex;
     align-items: center;
     text-align: center;
 }
 
 /* Custom theme for the categories images */
-.categories-section img{
+.categories-section img {
     width: 100px;
     height: auto;
     padding-left: 15%;
 }
 
 /* Custom theme for the categories text to center it */
-.categories-section h2{
+.categories-section h2 {
     padding-right: 8%;
 }
+
 /* Custom theme for the categories text to center it */
-.categories-section h3{
+.categories-section h3 {
     padding-left: 15%;
 }
 
@@ -322,12 +365,15 @@ a:hover {
 /* Media query for small screens, align items vertically */
 @media (width: 720px) {
     .flex-container {
-        flex-direction: column; /* Stack items vertically */
-        align-items: center;/* Center items horizontally */ 
+        flex-direction: column;
+        /* Stack items vertically */
+        align-items: center;
+        /* Center items horizontally */
     }
 
     .about-section article {
-        margin: 0; /* Remove horizontal margin for stacked layout */
+        margin: 0;
+        /* Remove horizontal margin for stacked layout */
     }
 }
 
@@ -346,8 +392,9 @@ footer {
 }
 
 footer p {
-    margin: 0; /* Remove default margin */
-    
+    margin: 0;
+    /* Remove default margin */
+
 }
 
 /* Flex usage for the footer */
@@ -406,13 +453,16 @@ form input[type="submit"]:hover {
 
 /* Theme for the table in the rentals details page */
 table {
-    border-collapse: collapse; /* Collapse borders */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Add shadow to the table */
+    border-collapse: collapse;
+    /* Collapse borders */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    /* Add shadow to the table */
 }
 
 th,
 td {
-    border: 1px solid #343a40; /* Color outline */
+    border: 1px solid #343a40;
+    /* Color outline */
     padding: 10px;
     text-align: center;
 }
@@ -432,7 +482,7 @@ td {
     .registration-form {
         max-width: 90%;
     }
-    
+
 }
 
 /* Media query for tablet screens */
@@ -440,11 +490,11 @@ td {
     .registration-form {
         max-width: 90%;
     }
-    
+
 }
 
 /* Media query for 1080p/2, else it's 60% width on window managers (hyprland + sway) */
-@media (max-width:1300px){
+@media (max-width:1300px) {
     .registration-form {
         max-width: 90%;
     }
@@ -457,7 +507,8 @@ td {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 8px;
-    box-sizing: border-box; /* Ensure padding and border are included in the width */
+    box-sizing: border-box;
+    /* Ensure padding and border are included in the width */
     width: 90%;
 }
 
@@ -474,7 +525,8 @@ td {
 .registration-form input[type="date"],
 .registration-form input[type="password"],
 .registration-form textarea {
-    width: calc(100% - 20px); /* Make the a little smaller than the fieldset */
+    width: calc(100% - 20px);
+    /* Make the a little smaller than the fieldset */
     padding: 8px;
     margin-bottom: 12px;
     border: 1px solid #ccc;
@@ -503,7 +555,8 @@ select {
 
 /* Theme for the select in the registration form */
 select {
-    width: calc(100% - 20px); /* Match the input fields below */
+    width: calc(100% - 20px);
+    /* Match the input fields below */
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -578,12 +631,15 @@ details fieldset {
 }
 
 .carousel-article table {
-    width: 80%; /* Adjust the width as needed */
-    margin-top: 2px; /* Adjust the top margin as needed */
+    width: 80%;
+    /* Adjust the width as needed */
+    margin-top: 2px;
+    /* Adjust the top margin as needed */
 }
 
 
-.prev, .next {
+.prev,
+.next {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -602,6 +658,7 @@ details fieldset {
 .next {
     right: 0;
 }
+
 #login-popup {
     display: none;
     position: fixed;
@@ -626,6 +683,7 @@ details fieldset {
     from {
         opacity: 0;
     }
+
     to {
         opacity: 1;
     }
@@ -635,6 +693,7 @@ details fieldset {
 .fadeIn {
     animation: fadeIn 0.3s ease-in-out;
 }
+
 .close-button {
     position: absolute;
     top: 10px;
@@ -642,4 +701,59 @@ details fieldset {
     cursor: pointer;
     font-size: 18px;
     color: #333;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-toggle::after {
+    display: inline-block;
+    margin-left: 0.255em;
+    vertical-align: 0.255em;
+    content: "";
+    border-top: 0.3em solid;
+    border-right: 0.3em solid transparent;
+    border-bottom: 0;
+    border-left: 0.3em solid transparent;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border-radius: 10px;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown-menu a {
+    color: #333;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-menu a:hover {
+    background-color: #ddd;
+}
+
+#user-info {
+    display: none;
+    top: 50px;
+    right: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#logged-username {
+    font-weight: bold;
+    color: #92b7f0;
 }
