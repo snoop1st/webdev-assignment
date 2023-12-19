@@ -7,7 +7,6 @@ function simulateAddToFavoritesService(data) {
     const isDuplicate = favoritesStorage.some(entry => entry.advertisementId === data.advertisementId);
 
     if (!isDuplicate) {
-        // Add to favorites
         favoritesStorage.push(data);
         console.log('Added to favorites successfully!');
     } else {
@@ -36,44 +35,70 @@ function toggleFavorite(adId, adTitle, adDescription, adCost, adImageUrl) {
 
     // Check if jsonResponse is available and has the required properties
     if (jsonResponse && jsonResponse.username && jsonResponse.uuid) {
-        // Retrieve additional details of the advertisement based on adId
-        const adDetails = getAdvertisementDetails(adId);
+        const favoritesStorage = getFavoritesFromLocalStorage(); // Retrieve favorites from local storage
+        const isAlreadyFavorite = favoritesStorage.some(entry => entry.advertisementId === adId);
 
-        if (adDetails) {
-            // Include ad details along with user session information
-            const requestData = {
-                advertisementId: adId,
-                title: adDetails.title,
-                description: adDetails.description,
-                cost: adCost,
-                imageUrl: adImageUrl,
-                uuid: jsonResponse.uuid, // Use the uuid from the jsonResponse
-                username: jsonResponse.username, // Use the username from the jsonResponse
-            };
-
+        if (isAlreadyFavorite) {
+            console.error('Advertisement is already in favorites.');
+            alert('Advertisement is already in favorites.');
+        } else {
             fetch('https://jsonplaceholder.typicode.com/posts', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(requestData),
+                body: JSON.stringify({
+                    advertisementId: adId,
+                    title: adTitle,
+                    description: adDescription,
+                    cost: adCost,
+                    imageUrl: adImageUrl,
+                    uuid: jsonResponse.uuid, // Use the uuid from the jsonResponse
+                    username: jsonResponse.username, // Use the username from the jsonResponse
+                }),
             })
             .then(response => response.json())
             .then(data => {
                 console.log(data);
-                // Handle success or error response as needed
+
+                // Update button text to indicate it's added to favorites
+                const button = document.querySelector(`article[data-id="${adId}"] button.favorite-button`);
+
+                if (button) {
+                    button.textContent = 'Προστέθηκε στα αγαπημένα!';
+                    button.disabled = true; // Optionally disable the button after adding to favorites
+                } else {
+                    console.error(`Button element not found for ID: ${adId}`);
+                }
+
+                // Add to favorites locally
+                simulateAddToFavoritesService({
+                    advertisementId: adId,
+                    title: adTitle,
+                    description: adDescription,
+                    cost: adCost,
+                    imageUrl: adImageUrl,
+                    uuid: jsonResponse.uuid,
+                    username: jsonResponse.username,
+                });
             })
             .catch(error => {
                 console.error('Error:', error);
             });
-        } else {
-            console.error(`Advertisement details not found for ID: ${adId}`);
         }
     } else {
         // User is not logged in, display an alert
         console.error('User session data not available. Login first.');
         alert('Dear user please login first.');
     }
+}
+
+
+// Simulated function to get favorites from local storage
+function getFavoritesFromLocalStorage() {
+    // Retrieve favorites from local storage or use an empty array if not found
+    const favoritesJson = localStorage.getItem('favorites');
+    return favoritesJson ? JSON.parse(favoritesJson) : [];
 }
 
 function getAdvertisementDetails(advertisementId) {
@@ -105,3 +130,5 @@ function getAdvertisementDetails(advertisementId) {
         return null;
     }
 }
+
+
