@@ -1,5 +1,5 @@
 let loginPopupVisible = false; // Track the visibility of the login popup
-
+let jsonResponse; // Declare jsonResponse in the global scope
 document.addEventListener('DOMContentLoaded', function () {
     // Add event listeners for closing the popup
     const closeButton = document.querySelector('.close-button');
@@ -28,21 +28,22 @@ function openLoginPopup(event) {
 // Define a constant object for username-password pairs
 const userCredentials = {
     'test': 'test', //f82b4bb9-503b-4fb1-995a-eedaabdb4cec
-    'test2': 'test2', //a135ce86-4470-4210-bebe-37f77c18b858
+    'test2': 'test2', //9395d747-8b92-42e2-9686-9cc6162d46d7
     'nikos': 'qwerty',
 };
 
 function login() {
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
+    const usernameInput = document.getElementById('username');
+    const passwordInput = document.getElementById('password');
+    
+    const username = usernameInput.value;
+    const password = passwordInput.value;
 
     const authenticationResult = authenticateUser(username, password);
 
     if (authenticationResult.statusCode === 200) {
-        // The user is authenticated successfully
         let sessionId = getSessionCookie(username);
 
-        // If the session ID is not present in the cookie, generate and set it
         if (!sessionId) {
             sessionId = uuidv4();
             setSessionCookie(username, sessionId);
@@ -53,7 +54,9 @@ function login() {
 
         // Construct the JSON response with the session ID
         const jsonResponse = {
-            sessionId: sessionId
+            sessionId: sessionId,
+            username: username, // Pass the username to the AFS endpoint
+            uuid: sessionId // Pass a new UUID to the AFS endpoint
         };
 
         // Log the JSON response to the console
@@ -68,20 +71,23 @@ function login() {
         // Close the login popup after successful login
         closeLoginPopup();
 
+        // Set the jsonResponse as a global variable
+        window.jsonResponse = jsonResponse;
+
         // Display the JSON response instead of redirecting
         const messageContainer = document.getElementById('login-message');
-        messageContainer.textContent = JSON.stringify(jsonResponse, null, 2);
         localStorage.setItem('jsonResponse', JSON.stringify(jsonResponse));
 
         // Optionally, you can clear the login form
-        document.getElementById('username').value = '';
-        document.getElementById('password').value = '';
+        usernameInput.value = '';
+        passwordInput.value = '';
     } else {
         // Display an error message for unsuccessful authentication
         console.error('Error:', authenticationResult.body.error);
         alert('Invalid credentials. Please try again.');
     }
 }
+
 
 
 
@@ -133,7 +139,10 @@ function setSessionCookie(username, sessionId) {
     setCookie(username, sessionId, 1); // Set the session cookie to expire in 1 day
 }
 
-// Function to get the user's session UUID from the cookie
+// Function to get the user's session UUID from the cookie works only for one session 
+//of running the Node server, thus everytime the server is restarted, the cookie is deleted
 function getSessionCookie(username) {
     return getCookie(username);
 }
+
+

@@ -131,7 +131,6 @@ function createFeaturesTable(featuresString) {
 }
 
 function displayCategoryArticles(categoryId, categoryHtmls) {
-    console.log('Displaying articles for Category HTMLs:', categoryHtmls);
     const parser = new DOMParser();
     const categoryArticles = categoryHtmls.flatMap(categoryHtml => {
         if (categoryHtml && categoryId === 'ενοικιάσεις αυτοκινήτων') {
