@@ -5,12 +5,8 @@ const favoritesDatabase = [];
 
 // DAO method to add to favorites
 function addToFavorites(advertisementId, title, description, cost, imageUrl, uuid, username) {
-  const isDuplicate = favoritesDatabase.some(entry => {
-    console.log('Stored ID:', entry.advertisementId);
-    console.log('Incoming ID:', advertisementId);
-    return entry.advertisementId === advertisementId;
-  });
-  
+  const isDuplicate = favoritesDatabase.some(entry => entry.advertisementId === advertisementId);
+
   if (!isDuplicate) {
     favoritesDatabase.push({
       advertisementId,
@@ -30,10 +26,16 @@ function addToFavorites(advertisementId, title, description, cost, imageUrl, uui
   }
 }
 
+// DAO method to get favorites by user UUID
+function getFavoritesByUUID(uuid) {
+  return favoritesDatabase.filter(entry => entry.uuid === uuid);
+}
+
 // Other DAO methods...
 
 // Export the DAO methods
 module.exports = {
   addToFavorites,
+  getFavoritesByUUID,
   // Add other DAO methods...
 };

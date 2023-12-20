@@ -18,16 +18,20 @@ app.get('/category-template.js', function (req, res) {
   res.header('Content-Type', 'application/javascript');
   res.sendFile('public/js/category-template.js', { root: __dirname });
 });
-
+app.get('/getFavorites', (req, res) => {
+  const uuid = req.query.uuid;
+  const userFavorites = favoritesDao.getFavoritesByUUID(uuid);
+  res.json({ favorites: userFavorites });
+});
 // Define your addToFavorites route
 app.post('/addToFavorites', async (req, res) => {
-  const { advertisementId, title, description, cost, imageUrl, username } = req.body;
+  const { advertisementId, title, description, cost, imageUrl, uuid, username } = req.body;
 
   // Authenticate the user
   const user = await userDao.getUserByUsername(username);
 
   if (!user) {
-    res.status(401).json({ error: 'Invalid credentials' });
+    res.status(401).json({ success: false, error: 'Invalid credentials' });
     return;
   }
 
@@ -35,9 +39,9 @@ app.post('/addToFavorites', async (req, res) => {
   const result = favoritesDao.addToFavorites(advertisementId, title, description, cost, imageUrl, user.uuid, username);
 
   if (result) {
-    res.status(200).json({ message: 'Added to favorites successfully!' });
+    res.status(200).json({ success: true, message: 'Added to favorites successfully!' });
   } else {
-    res.status(400).json({ error: 'Advertisement is already in favorites.' });
+    res.status(400).json({ success: false, error: 'Advertisement is already in favorites.' });
   }
 });
 
