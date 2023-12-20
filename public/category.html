@@ -10,6 +10,11 @@
     <script src="https://cdn.jsdelivr.net/npm/uuid@8.3.2/dist/umd/uuidv4.min.js"></script>
     <script src="js/login.js"></script>
     <script src="js/favorite.js"></script>
+    <script src="js/favoritesDao.js"></script>
+    <script src="js/userDao.js"></script>
+
+
+
 </head>
 
 <body>
@@ -58,10 +63,10 @@
                 <form id="login-form">
                     <label for="username">Username:</label>
                     <input type="text" id="username" name="username" required>
-
+        
                     <label for="password">Password:</label>
                     <input type="password" id="password" name="password" required>
-
+        
                     <button type="button" onclick="login()">Login</button>
                 </form>
             </div>

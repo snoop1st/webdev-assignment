@@ -1,48 +1,47 @@
-// Simulated local storage for favorites
-const favoritesStorage = [];
+function toggleFavorite(adId) {
+    const storedJsonResponse = localStorage.getItem('jsonResponse');
 
-// Simulated function to add to favorites locally
-function simulateAddToFavoritesService(data) {
-    // Check for duplicate entries
-    const isDuplicate = favoritesStorage.some(entry => entry.advertisementId === data.advertisementId);
+    if (storedJsonResponse) {
+        const jsonResponse = JSON.parse(storedJsonResponse);
+        const username = jsonResponse.username;
+        const uuid = jsonResponse.uuid;
 
-    if (!isDuplicate) {
-        favoritesStorage.push(data);
-        console.log('Added to favorites successfully!');
-    } else {
-        console.error('Advertisement is already in favorites.');
-    }
-}
+        const article = document.querySelector(`article[data-id="${adId}"]`);
 
+        if (article) {
+            const adTitle = article.querySelector('h3').textContent;
+            const adDescription = article.querySelector('p:nth-of-type(2)').textContent;
+            const adImageUrl = article.querySelector('.carousel-image').src;
 
-// Function to get user session information (example implementation)
-function getUserSession() {
-    // Check if jsonResponse is available and has the required properties
-    if (jsonResponse && jsonResponse.username && jsonResponse.uuid) {
-        return {
-            username: jsonResponse.username,
-            sessionId: jsonResponse.sessionId,
-            uuid: jsonResponse.uuid,
-        };
-    } else {
-        console.error('User session data not available.');
-        return null;
-    }
-}
+            // Dynamically retrieve cost from the features table
+            const featuresTable = article.querySelector(`#features-table-${adId} table`);
+            let adCost = 'N/A';
 
-function toggleFavorite(adId, adTitle, adDescription, adCost, adImageUrl) {
-    const jsonResponse = window.jsonResponse; // Retrieve the jsonResponse from the global variable
+            if (featuresTable) {
+                const rows = featuresTable.rows;
 
-    // Check if jsonResponse is available and has the required properties
-    if (jsonResponse && jsonResponse.username && jsonResponse.uuid) {
-        const favoritesStorage = getFavoritesFromLocalStorage(); // Retrieve favorites from local storage
-        const isAlreadyFavorite = favoritesStorage.some(entry => entry.advertisementId === adId);
+                for (let i = 0; i < rows.length; i++) {
+                    const featureName = rows[i].cells[0].textContent;
 
-        if (isAlreadyFavorite) {
-            console.error('Advertisement is already in favorites.');
-            alert('Advertisement is already in favorites.');
-        } else {
-            fetch('https://jsonplaceholder.typicode.com/posts', {
+                    if (featureName.toLowerCase() === 'cost') {
+                        adCost = rows[i].cells[1].textContent;
+                        break;
+                    }
+                }
+            }
+
+            console.log('User Data:');
+            console.log('Username:', username);
+            console.log('UUID:', uuid);
+
+            console.log('Advertisement Details:');
+            console.log('Advertisement ID:', adId);
+            console.log('Title:', adTitle);
+            console.log('Description:', adDescription);
+            console.log('Cost:', adCost);
+            console.log('Image URL:', adImageUrl);
+
+            fetch('http://localhost:3000/addToFavorites', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -53,16 +52,14 @@ function toggleFavorite(adId, adTitle, adDescription, adCost, adImageUrl) {
                     description: adDescription,
                     cost: adCost,
                     imageUrl: adImageUrl,
-                    uuid: jsonResponse.uuid, // Use the uuid from the jsonResponse
-                    username: jsonResponse.username, // Use the username from the jsonResponse
+                    uuid: uuid,
+                    username: username,
                 }),
             })
             .then(response => response.json())
             .then(data => {
-                console.log(data);
-
                 // Update button text to indicate it's added to favorites
-                const button = document.querySelector(`article[data-id="${adId}"] button.favorite-button`);
+                const button = article.querySelector('button.favorite-button');
 
                 if (button) {
                     button.textContent = 'Προστέθηκε στα αγαπημένα!';
@@ -70,65 +67,15 @@ function toggleFavorite(adId, adTitle, adDescription, adCost, adImageUrl) {
                 } else {
                     console.error(`Button element not found for ID: ${adId}`);
                 }
-
-                // Add to favorites locally
-                simulateAddToFavoritesService({
-                    advertisementId: adId,
-                    title: adTitle,
-                    description: adDescription,
-                    cost: adCost,
-                    imageUrl: adImageUrl,
-                    uuid: jsonResponse.uuid,
-                    username: jsonResponse.username,
-                });
             })
             .catch(error => {
                 console.error('Error:', error);
             });
-        }
-    } else {
-        // User is not logged in, display an alert
-        console.error('User session data not available. Login first.');
-        alert('Dear user please login first.');
-    }
-}
-
-
-// Simulated function to get favorites from local storage
-function getFavoritesFromLocalStorage() {
-    // Retrieve favorites from local storage or use an empty array if not found
-    const favoritesJson = localStorage.getItem('favorites');
-    return favoritesJson ? JSON.parse(favoritesJson) : [];
-}
-
-function getAdvertisementDetails(advertisementId) {
-    // Retrieve the HTML elements for the current advertisement
-    const articleElement = document.querySelector(`article[data-id="${advertisementId}"]`);
-    
-    // Check if the article element is found
-    if (articleElement) {
-        // Extract text content from the elements
-        const titleElement = articleElement.querySelector('h3');
-        const descriptionElement = articleElement.querySelector('p:nth-of-type(2)');
-
-        if (titleElement && descriptionElement) {
-            const title = titleElement.textContent.trim();
-            const description = descriptionElement.textContent.trim();
-
-            // Return the advertisement details
-            return {
-                title,
-                description,
-                // Add more details as needed
-            };
         } else {
-            console.error(`Title or description element not found for ID: ${advertisementId}`);
-            return null;
+            console.error(`Article element not found for ID: ${adId}`);
         }
     } else {
-        console.error(`Article element not found for ID: ${advertisementId}`);
-        return null;
+        console.error('User session data not available. Login first.');
+        alert('Dear user, please login first.');
     }
 }
-
-
