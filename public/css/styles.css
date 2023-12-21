@@ -542,11 +542,6 @@ select {
     display: block;
 }
 
-/* Used in the javascript for the registration form */
-#subcategoryDropdown {
-    display: none;
-}
-
 /* Theme for the select in the registration form */
 select {
     width: calc(100% - 20px);
@@ -697,29 +692,13 @@ details fieldset {
     color: #333;
 }
 
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-.dropdown-toggle::after {
-    display: inline-block;
-    margin-left: 0.255em;
-    vertical-align: 0.255em;
-    content: "";
-    border-top: 0.3em solid;
-    border-right: 0.3em solid transparent;
-    border-bottom: 0;
-    border-left: 0.3em solid transparent;
-}
-
 .dropdown-menu {
     display: none;
     position: absolute;
     background-color: #f9f9f9;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    z-index: 1;
     border-radius: 10px;
+    padding: 10px;
 }
 
 .dropdown:hover .dropdown-menu {
@@ -728,9 +707,15 @@ details fieldset {
 
 .dropdown-menu a {
     color: #333;
-    padding: 12px 16px;
+    padding: 10px; /* Adjust the padding values as needed */
     text-decoration: none;
     display: block;
+    text-align: center; /* Center the text */
+}
+
+.dropdown-menu img {
+    display: block;
+    margin: 0 auto 5px; /* Adjust the margin values as needed */
 }
 
 .dropdown-menu a:hover {
