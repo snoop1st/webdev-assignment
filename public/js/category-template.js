@@ -1,11 +1,11 @@
-// category-template.js
 document.addEventListener('DOMContentLoaded', function () {
     const categoryTemplateSource = document.getElementById('category-template').innerHTML;
     const categoryTemplate = Handlebars.compile(categoryTemplateSource);
 
     // Mock data for testing
     const categories = [
-    ];
+    // Set the page title dynamically
+];
 
     const templateData = { categories };
     const templateHtml = categoryTemplate(templateData);

@@ -14,7 +14,6 @@ async function toggleFavorite(adId) {
         const adDescription = article.querySelector('p:nth-of-type(2)').textContent;
         const adImageUrl = article.querySelector('.carousel-image').src;
 
-        // Dynamically retrieve cost from the features table
         const featuresTable = article.querySelector(`#features-table-${adId} table`);
         let adCost = 'N/A';
 
@@ -54,7 +53,7 @@ async function toggleFavorite(adId) {
           const button = article.querySelector('button.favorite-button');
           if (button) {
             button.textContent = 'Προστέθηκε στα αγαπημένα!';
-            button.disabled = true; // Optionally disable the button after adding to favorites
+            button.disabled = true; // Disable the button
             console.log('User Data:');
             console.log('Username:', username);
             console.log('UUID:', uuid);

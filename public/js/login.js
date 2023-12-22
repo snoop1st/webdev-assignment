@@ -103,7 +103,7 @@ function login() {
         window.jsonResponse = {
             sessionId: authenticationResult.body.sessionId,
             username: username,
-            uuid: authenticationResult.body.sessionId, // Make sure to assign a valid value
+            uuid: authenticationResult.body.sessionId,
           };          
         localStorage.setItem('jsonResponse', JSON.stringify(window.jsonResponse));
         updateUserInfo(window.jsonResponse);

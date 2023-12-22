@@ -101,7 +101,6 @@ function getCategoryFilenames(categoryId) {
             return ['home-rentals.html'];
         case 'ενοικιάσεις επαγγελματικών χώρων':
             return ['commercial-rentals.html'];
-        // Add more cases for other categories
         case null:
             // Handle null category (category.html with no id) show articles from all categories
             return ['car-rentals.html', 'boat-rentals.html', 'home-rentals.html', 'commercial-rentals.html'];
@@ -137,13 +136,11 @@ function displayCategoryArticles(categoryId, categoryHtmls) {
             const categoryDoc = parser.parseFromString(categoryHtml, 'text/html');
             const articles = Array.from(categoryDoc.querySelectorAll('article'));
 
-            // Loop through articles and append features
             articles.forEach(article => {
                 const advertisementId = article.querySelector('p').textContent.trim().split(' ')[1];
                 const featuresString = featuresData[advertisementId];
                 const featuresTable = createFeaturesTable(featuresString);
 
-                // Append the features table to the article
                 const featuresTablePlaceholder = article.querySelector(`#features-table-${advertisementId}`);
                 featuresTablePlaceholder.appendChild(featuresTable);
             });
