@@ -103,13 +103,14 @@ function login() {
         window.jsonResponse = {
             sessionId: authenticationResult.body.sessionId,
             username: username,
-            uuid: authenticationResult.body.sessionId,
-        };
+            uuid: authenticationResult.body.sessionId, // Make sure to assign a valid value
+          };          
         localStorage.setItem('jsonResponse', JSON.stringify(window.jsonResponse));
         updateUserInfo(window.jsonResponse);
 
         console.log('Logged in with UUID:', window.jsonResponse.uuid);
         console.log('Logged in with Username:', window.jsonResponse.username);
+
     } else {
         console.error('Error:', authenticationResult.body.error);
         alert('Invalid credentials. Please try again.');

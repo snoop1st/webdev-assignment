@@ -1,4 +1,3 @@
-// userDao.js
 
 const userCredentialsDAO = {
     'test': 'test',
