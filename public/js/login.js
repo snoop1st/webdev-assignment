@@ -104,15 +104,17 @@ function login() {
             sessionId: authenticationResult.body.sessionId,
             username: username,
             uuid: authenticationResult.body.sessionId,
-          };          
+        };          
         localStorage.setItem('jsonResponse', JSON.stringify(window.jsonResponse));
         updateUserInfo(window.jsonResponse);
 
         console.log('Logged in with UUID:', window.jsonResponse.uuid);
         console.log('Logged in with Username:', window.jsonResponse.username);
 
+        window.location.reload(true); // Add refresh to update the favorites in case of changing account
     } else {
         console.error('Error:', authenticationResult.body.error);
         alert('Invalid credentials. Please try again.');
     }
 }
+
