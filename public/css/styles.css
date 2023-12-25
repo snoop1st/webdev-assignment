@@ -215,12 +215,6 @@ a {
     /* Add transition to the links */
 }
 
-/* Change the look of the links when hovered */
-a:hover {
-    background-color: #6c757d;
-    color: #ffffff;
-}
-
 /* Custom format for the faq section in index page */
 .faq-section {
     display: flex;
@@ -749,5 +743,22 @@ details fieldset {
 }
 
 .favorite-button:hover {
-    background-color: #30a1ec;
+    background-color: #ffffff;
+    color: #ffffff;
 }
+
+.floating-favorites {
+    position: fixed;
+    bottom: 20px; /* Adjust as needed */
+    right: 20px; /* Adjust as needed */
+    z-index: 1000; /* Make sure it's above other elements */
+    cursor: pointer;
+    /* Add styling for the floating icon */
+  }
+  
+  .floating-favorites img {
+    width: 40px; /* Adjust as needed */
+    height: 40px; /* Adjust as needed */
+    border-radius: 50%; /* Makes it a circle if using a round icon */
+    /* Add any other styles for the icon */
+  }

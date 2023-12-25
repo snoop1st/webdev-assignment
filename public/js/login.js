@@ -14,6 +14,21 @@ document.addEventListener('DOMContentLoaded', function () {
         const jsonResponse = JSON.parse(storedJsonResponse);
         updateUserInfo(jsonResponse);
     }
+    // Add the new code here
+    const favoritesLink = document.getElementById('favorites-link');
+    favoritesLink.addEventListener('click', function (event) {
+        event.preventDefault();
+        const storedJsonResponse = localStorage.getItem('jsonResponse');
+        if (storedJsonResponse) {
+            const jsonResponse = JSON.parse(storedJsonResponse);
+            const categoryUrl = `category.html?username=${jsonResponse.username}&sessionId=${jsonResponse.uuid}`;
+            window.location.href = categoryUrl;
+        } else {
+            // Handle the case when user is not logged in or no stored JSON response
+            alert('Please log in first.');
+            // You may also choose to redirect to the login page or handle it differently.
+        }
+    });
 });
 
 function closeLoginPopup() {
@@ -111,7 +126,7 @@ function login() {
         console.log('Logged in with UUID:', window.jsonResponse.uuid);
         console.log('Logged in with Username:', window.jsonResponse.username);
 
-        window.location.reload(true); // Add refresh to update the favorites in case of changing account
+        window.location.href = 'category.html?id=ενοικιάσεις αυτοκινήτων'; // Add refresh to update the favorites button in case of changing account
     } else {
         console.error('Error:', authenticationResult.body.error);
         alert('Invalid credentials. Please try again.');
