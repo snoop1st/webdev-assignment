@@ -701,15 +701,18 @@ details fieldset {
 
 .dropdown-menu a {
     color: #333;
-    padding: 10px; /* Adjust the padding values as needed */
+    padding: 10px;
+    /* Adjust the padding values as needed */
     text-decoration: none;
     display: block;
-    text-align: center; /* Center the text */
+    text-align: center;
+    /* Center the text */
 }
 
 .dropdown-menu img {
     display: block;
-    margin: 0 auto 5px; /* Adjust the margin values as needed */
+    margin: 0 auto 5px;
+    /* Adjust the margin values as needed */
 }
 
 .dropdown-menu a:hover {
@@ -739,7 +742,7 @@ details fieldset {
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    margin: 20px auto; 
+    margin: 20px auto;
 }
 
 .favorite-button:hover {
@@ -749,16 +752,50 @@ details fieldset {
 
 .floating-favorites {
     position: fixed;
-    bottom: 20px; /* Adjust as needed */
-    right: 20px; /* Adjust as needed */
-    z-index: 1000; /* Make sure it's above other elements */
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
     cursor: pointer;
-    /* Add styling for the floating icon */
-  }
-  
-  .floating-favorites img {
-    width: 40px; /* Adjust as needed */
-    height: 40px; /* Adjust as needed */
-    border-radius: 50%; /* Makes it a circle if using a round icon */
-    /* Add any other styles for the icon */
-  }
+}
+
+.floating-favorites img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+
+}
+
+.favorite-ads-section {
+    text-align: center;
+}
+
+.favorite-ad {
+    width: 80%;
+    box-sizing: border-box;
+    text-align: center;
+    border: 2px solid #343a40;
+    border-radius: 2%;
+    padding: 10px;
+    margin: 20px auto;
+    display: block;
+}
+
+@media (min-width: 1000px) {
+    .favorite-ad {
+        width: 45%;
+        box-sizing: border-box;
+        border: 2px solid #343a40;
+        border-radius: 2%;
+        padding: 10px;
+        margin: 10px;
+        display: inline-block;
+        height: 600px; 
+        overflow: hidden; /* For reasons I don't understand this is needed */
+    }
+}
+
+.favorite-ads-section h2 {
+    grid-column: 1 / -1;
+    margin-bottom: 20px;
+    text-align: center;
+}

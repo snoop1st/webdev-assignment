@@ -1,10 +1,10 @@
+// favoritesDao.js
 // Simulated database
 const favoritesDatabase = [];
 
 // DAO method to add to favorites
 function addToFavorites(advertisementId, title, description, cost, imageUrl, uuid, username) {
   const isDuplicate = favoritesDatabase.some(entry => entry.advertisementId === advertisementId && entry.uuid === uuid);
-  console.log('in addtofavorites function1:', uuid);
   if (!isDuplicate) {
     favoritesDatabase.push({
       advertisementId,
@@ -28,7 +28,6 @@ function addToFavorites(advertisementId, title, description, cost, imageUrl, uui
 function getFavoritesByUUID(uuid) {
   return favoritesDatabase.filter(entry => entry.uuid === uuid);
 }
-
 
 // Export the DAO methods
 module.exports = {

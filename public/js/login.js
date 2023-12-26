@@ -14,21 +14,6 @@ document.addEventListener('DOMContentLoaded', function () {
         const jsonResponse = JSON.parse(storedJsonResponse);
         updateUserInfo(jsonResponse);
     }
-    // Add the new code here
-    const favoritesLink = document.getElementById('favorites-link');
-    favoritesLink.addEventListener('click', function (event) {
-        event.preventDefault();
-        const storedJsonResponse = localStorage.getItem('jsonResponse');
-        if (storedJsonResponse) {
-            const jsonResponse = JSON.parse(storedJsonResponse);
-            const categoryUrl = `category.html?username=${jsonResponse.username}&sessionId=${jsonResponse.uuid}`;
-            window.location.href = categoryUrl;
-        } else {
-            // Handle the case when user is not logged in or no stored JSON response
-            alert('Please log in first.');
-            // You may also choose to redirect to the login page or handle it differently.
-        }
-    });
 });
 
 function closeLoginPopup() {
@@ -45,9 +30,15 @@ function openLoginPopup(event) {
 function updateUserInfo(jsonResponse) {
     const userInfo = document.getElementById('user-info');
     const loggedUsername = document.getElementById('logged-username');
+    const favoritesLink = document.getElementById('favorites-link');
 
     loggedUsername.textContent = jsonResponse.username;
     userInfo.style.display = 'block';
+
+    // Set the href attribute of the favorites link
+    if (favoritesLink) {
+        favoritesLink.href = `favorite-ads.html?username=${jsonResponse.username}&sessionId=${jsonResponse.uuid}`;
+    }
 }
 
 function authenticateUser(username, password) {
