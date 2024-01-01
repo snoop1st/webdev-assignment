@@ -116,8 +116,7 @@ function login() {
 
         console.log('Logged in with UUID:', window.jsonResponse.uuid);
         console.log('Logged in with Username:', window.jsonResponse.username);
-
-        window.location.href = 'category.html?id=ενοικιάσεις αυτοκινήτων'; // Add refresh to update the favorites button in case of changing account
+        location.reload();
     } else {
         console.error('Error:', authenticationResult.body.error);
         alert('Invalid credentials. Please try again.');
