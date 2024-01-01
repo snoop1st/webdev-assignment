@@ -116,7 +116,12 @@ function login() {
 
         console.log('Logged in with UUID:', window.jsonResponse.uuid);
         console.log('Logged in with Username:', window.jsonResponse.username);
-        location.reload();
+        const currentUrl=window.location.href;
+        if (currentUrl.includes('favorite'))
+            window.location.href = 'index.html';
+        else
+            window.location.reload();
+
     } else {
         console.error('Error:', authenticationResult.body.error);
         alert('Invalid credentials. Please try again.');
