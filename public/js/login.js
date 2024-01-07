@@ -116,7 +116,8 @@ function login() {
 
         console.log('Logged in with UUID:', window.jsonResponse.uuid);
         console.log('Logged in with Username:', window.jsonResponse.username);
-        const currentUrl=window.location.href;
+        
+        const currentUrl = window.location.href;
         if (currentUrl.includes('favorite'))
             window.location.href = 'index.html';
         else

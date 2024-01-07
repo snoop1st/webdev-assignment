@@ -1,3 +1,6 @@
+// TODO: Add comments
+//       Add more details in the favorite ads list
+
 const userFavoritesList = JSON.parse(localStorage.getItem('userFavoritesList')) || [];
 
 window.onload = function () {
@@ -38,7 +41,7 @@ window.onload = function () {
         alert('Dear user, please provide a valid username and session ID.');
       }
     } else {
-      console.error('Element with ID "favorite-ads-list" not found.');
+      console.error('Favorite ads list element not yet found.');
     }
   }
 
