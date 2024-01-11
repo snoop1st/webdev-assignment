@@ -4,13 +4,20 @@ const bodyParser = require('body-parser');
 const favoritesDao = require('./public/js/favoritesDao');
 const userDao = require('./public/js/userDao'); 
 const { v4: uuidv4 } = require('uuid');
+const cors = require('cors');
 const app = express();
 const port = 8080;
 
+
 app.listen(port);
+app.use(cors());
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+
+app.listen(3000, () => {
+  console.log('CORS-enabled web server listening on port 3000');
+});
 
 app.post('/addToFavorites', async (req, res) => {
   const { advertisementId, title, description, cost, imageUrl, uuid, username } = req.body;
