@@ -1,8 +1,10 @@
-// TODO: Add comments
-//       Add more details in the favorite ads list
+// TODO: Add more details in the favorite ads list
+// TODO: Add a button to remove an ad from the favorites list
 
+// Get the user favorites list from localStorage
 const userFavoritesList = JSON.parse(localStorage.getItem('userFavoritesList')) || [];
 
+// Function to display user favorites on page load
 window.onload = function () {
 
   // Display user favorites on page load
@@ -38,7 +40,7 @@ window.onload = function () {
         favoriteAdsList.innerHTML = favoriteAdsHTML.join('');
       } else {
         console.error('Invalid user session data. Username or session ID missing in the URL.');
-        alert('Dear user, please provide a valid username and session ID.');
+        alert('Please provide a valid username and session ID.');
       }
     } else {
       console.error('Favorite ads list element not yet found.');
@@ -100,7 +102,7 @@ async function toggleFavorite(adId) {
           localStorage.setItem('userFavoritesList', JSON.stringify(userFavoritesList));
 
           // Log the updated list
-          console.log('Updated Favorites List:', userFavoritesList);
+          //console.log('Updated Favorites List:', userFavoritesList);  // Log for testing purposes
 
           response = await fetch('http://localhost:3000/addToFavorites', {
             method: 'POST',
@@ -126,7 +128,8 @@ async function toggleFavorite(adId) {
             if (button) {
               button.textContent = 'Προστέθηκε στα αγαπημένα!';
               button.disabled = true; // Disable the button
-              console.log('User Data:');
+              // Log all the info stored in the userFavoritesList for testing purposes
+/*            console.log('User Data:');
               console.log('Username:', username);
               console.log('UUID:', uuid);
               console.log('Advertisement Details:');
@@ -135,6 +138,7 @@ async function toggleFavorite(adId) {
               console.log('Description:', adDescription);
               console.log('Cost:', adCost);
               console.log('Image URL:', adImageUrl);
+*/
             } else {
               console.error(`Button element not found for ID: ${adId}`);
             }
@@ -157,10 +161,10 @@ async function toggleFavorite(adId) {
       }
     } else {
       console.error('Invalid user session data. Login first.');
-      alert('Dear user, please login first.');
+      alert('Please login first.');
     }
   } else {
     console.error('User session data not available. Login first.');
-    alert('Dear user, please login first.');
+    alert('Please login first.');
   }
 }

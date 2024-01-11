@@ -1,6 +1,8 @@
+// 
 document.addEventListener('DOMContentLoaded', function () {
     fetchCategories();
 
+    // Function to fetch the categories from categories.html
     function fetchCategories() {
         fetch('categories.html')
             .then(response => {
@@ -13,6 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
             .catch(error => console.error(error));
     }
 
+    // Function to parse the categories from categories.html
     function parseCategories(categoriesHtml) {
         const parser = new DOMParser();
         const doc = parser.parseFromString(categoriesHtml, 'text/html');
@@ -34,6 +37,7 @@ document.addEventListener('DOMContentLoaded', function () {
         renderCategories(categories);
     }
 
+    // Function to render the categories
     function renderCategories(categories) {
         const dynamicCategories = document.getElementById('dynamic-categories');
         dynamicCategories.innerHTML = '';
@@ -43,6 +47,7 @@ document.addEventListener('DOMContentLoaded', function () {
             categoryElement.classList.add('categories-section');
             const categoryId = getCategoryID(category.title);
 
+            // Set necessary stuff for the articles
             categoryElement.innerHTML = `
                 <article>
                     <h3>${category.title}</h3>
@@ -59,6 +64,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // Function to get the category ID in lowercase, my preference
     function getCategoryID(categoryTitle) {
         return categoryTitle.toLowerCase();
     }

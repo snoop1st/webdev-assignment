@@ -1,14 +1,16 @@
+// Initiate the login popup
 document.addEventListener('DOMContentLoaded', function () {
     const closeButton = document.querySelector('.close-button');
     const loginPopup = document.getElementById('login-popup');
 
     closeButton.addEventListener('click', closeLoginPopup);
     document.addEventListener('keydown', function (event) {
-        if (event.key === 'Escape' && loginPopup.style.display === 'block') {
+        if (event.key === 'Escape' && loginPopup.style.display === 'block') { // Allow to close the popup with escape key
             closeLoginPopup();
         }
     });
 
+    // Check if the user is logged in from the localStorage
     const storedJsonResponse = localStorage.getItem('jsonResponse');
     if (storedJsonResponse) {
         const jsonResponse = JSON.parse(storedJsonResponse);
@@ -16,11 +18,13 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
+// Close the login popup
 function closeLoginPopup() {
     document.getElementById('login-popup').style.display = 'none';
     loginPopupVisible = false;
 }
 
+// Open the login popup
 function openLoginPopup(event) {
     event.preventDefault();
     document.getElementById('login-popup').style.display = 'block';
@@ -41,6 +45,7 @@ function updateUserInfo(jsonResponse) {
     }
 }
 
+// Authenticate the user with the database
 function authenticateUser(username, password) {
     if (userCredentialsDAO.hasOwnProperty(username)) {
         if (userCredentialsDAO[username] === password) {
@@ -68,6 +73,44 @@ function authenticateUser(username, password) {
     };
 }
 
+// Login function
+function login() {
+    const usernameInput = document.getElementById('username');
+    const passwordInput = document.getElementById('password');
+
+    const username = usernameInput.value.trim();
+    const password = passwordInput.value.trim();
+
+    const authenticationResult = authenticateUser(username, password);
+
+    if (authenticationResult.statusCode === 200) {
+        closeLoginPopup();
+        window.jsonResponse = {
+            sessionId: authenticationResult.body.sessionId,
+            username: username,
+            uuid: authenticationResult.body.sessionId,
+        };          
+        localStorage.setItem('jsonResponse', JSON.stringify(window.jsonResponse));
+        updateUserInfo(window.jsonResponse);
+
+        console.log('Logged in with UUID:', window.jsonResponse.uuid);
+        console.log('Logged in with Username:', window.jsonResponse.username);
+        
+        const currentUrl = window.location.href;
+    
+        if (currentUrl.includes('favorite')) // Handle the case when changes account while on
+        // favorite page (because it would show the previous user's favorites, big security issue)
+            window.location.href = 'index.html';
+        else // Else just reload in all other pages
+            window.location.reload();
+
+    } else {
+        console.error('Error:', authenticationResult.body.error);
+        alert('Invalid credentials. Please try again.');
+    }
+}
+
+// All the following functions are used to handle the login sessions
 function setCookie(name, value, days) {
     const date = new Date();
     date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
@@ -94,38 +137,3 @@ function setSessionCookie(username, sessionId) {
 function getSessionCookie(username) {
     return getCookie(username);
 }
-
-function login() {
-    const usernameInput = document.getElementById('username');
-    const passwordInput = document.getElementById('password');
-
-    const username = usernameInput.value.trim();
-    const password = passwordInput.value.trim();
-
-    const authenticationResult = authenticateUser(username, password);
-
-    if (authenticationResult.statusCode === 200) {
-        closeLoginPopup();
-        window.jsonResponse = {
-            sessionId: authenticationResult.body.sessionId,
-            username: username,
-            uuid: authenticationResult.body.sessionId,
-        };          
-        localStorage.setItem('jsonResponse', JSON.stringify(window.jsonResponse));
-        updateUserInfo(window.jsonResponse);
-
-        console.log('Logged in with UUID:', window.jsonResponse.uuid);
-        console.log('Logged in with Username:', window.jsonResponse.username);
-        
-        const currentUrl = window.location.href;
-        if (currentUrl.includes('favorite'))
-            window.location.href = 'index.html';
-        else
-            window.location.reload();
-
-    } else {
-        console.error('Error:', authenticationResult.body.error);
-        alert('Invalid credentials. Please try again.');
-    }
-}
-

@@ -1,4 +1,4 @@
-
+// Simple database for the user credentials
 const userCredentialsDAO = {
     'test': 'test',
     'test2': 'test2',

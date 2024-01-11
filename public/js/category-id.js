@@ -6,59 +6,50 @@ const featuresData = {
     "005": "Engine cc: 0; Transmission: Automatic; Seats: 5; Doors: 5; Fuel: Electric; Cost: 1€/day"
 };
 
+// Show which category-id is loaded eg enoikiaseis-autokiniton.html
 document.addEventListener('DOMContentLoaded', function () {
     const categoryId = getParameterByName('id');
-    console.log('Selected Category ID:', categoryId);
-    fetchCategoryArticles(categoryId);
+    //console.log('Selected Category ID:', categoryId);
+    fetchCategoryArticles(categoryId);  // Fetch articles for the selected category
 });
 
+// Function to retrieve the parameter (the category-id) from the URL
 function getParameterByName(name) {
     const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get(name);
 }
 
+// Function to fetch the articles for the selected category
 function fetchCategoryArticles(categoryId) {
-    console.log('Fetching articles for Category ID:', categoryId);
-    const categoryFilenames = getCategoryFilenames(categoryId);
-    console.log('Category Filenames:', categoryFilenames);
+    //console.log('Fetching articles for Category ID:', categoryId); // Log for testing purposes
+    let categoryFilenames = getCategoryFilenames(categoryId);
+    //console.log('Category Filenames:', categoryFilenames); // Log for testing purposes
 
-    if (categoryId === 'ενοικιάσεις αυτοκινήτων') {
-        const categoryFilenames = getCategoryFilenames(categoryId);
-        console.log('Category Filenames:', categoryFilenames);
+    // For the assignment, we only have to handle one category, in this case we did for the enoikiaseis-autokinhton
+    categoryFilenames = (categoryId === 'ενοικιάσεις αυτοκινήτων') ? getCategoryFilenames(categoryId) : categoryFilenames;
 
-        Promise.all(categoryFilenames.map(filename =>
-            fetch(filename)
-                .then(response => response.text())
-                .catch(error => {
-                    console.error(`Error fetching category HTML for ${filename}:`, error);
-                    return null;
-                })
-        ))
-            .then(categoryHtmls => {
-                console.log('Fetched HTMLs for Category ID:', categoryId);
-                displayCategoryArticles(categoryId, categoryHtmls);
-                initializeImageCarousel();
-            });
-    } else {
-        Promise.all(categoryFilenames.map(filename =>
-            fetch(filename)
-                .then(response => response.text())
-                .catch(error => {
-                    console.error(`Error fetching category HTML for ${filename}:`, error);
-                    return null;
-                })
-        ))
-            .then(categoryHtmls => {
-                console.log('Fetched HTMLs for Category ID:', categoryId);
-                displayCategoryArticles(categoryId, categoryHtmls);
-                initializeImageCarousel();
-            });
-    }
+    // Fetch the HTML for each category
+    Promise.all(categoryFilenames.map(filename =>
+        fetch(filename)
+            .then(response => response.text())
+            .catch(error => {   // Handle errors
+                console.error(`Error fetching category HTML for ${filename}:`, error);
+                return null;
+            })
+    ))
+        .then(categoryHtmls => {
+            displayCategoryArticles(categoryId, categoryHtmls); // Display the articles for the selected category
+            initializeImageCarousel();  // Initialize the image carousel
+        });
+    
 }
 
+// Function to initialize the image carousel
 function initializeImageCarousel() {
+    // Get all the image carousels
     const imageCarousels = document.querySelectorAll('.image-carousel');
 
+    // For each image carousel, initialize the carousel
     imageCarousels.forEach(carousel => {
         let slideIndex = 0;
 
@@ -86,7 +77,7 @@ function initializeImageCarousel() {
     });
 }
 
-
+// Function to get the category filenames for each category
 function getCategoryFilenames(categoryId) {
     switch (categoryId) {
         case 'οχήματα':
@@ -110,9 +101,9 @@ function getCategoryFilenames(categoryId) {
     }
 }
 
+// Function to create the features table for each article, uses the table in the begginning of the file
 function createFeaturesTable(featuresString) {
-    const featuresArray = featuresString.split('; ');
-
+    const featuresArray = featuresString.split('; '); // Split the features string into an array of features
     const table = document.createElement('table');
 
     featuresArray.forEach((feature) => {
@@ -129,13 +120,15 @@ function createFeaturesTable(featuresString) {
     return table;
 }
 
+// Function to display the articles for the selected category
 function displayCategoryArticles(categoryId, categoryHtmls) {
     const parser = new DOMParser();
     const categoryArticles = categoryHtmls.flatMap(categoryHtml => {
         if (categoryHtml && categoryId === 'ενοικιάσεις αυτοκινήτων') {
-            const categoryDoc = parser.parseFromString(categoryHtml, 'text/html');
-            const articles = Array.from(categoryDoc.querySelectorAll('article'));
+            const categoryDoc = parser.parseFromString(categoryHtml, 'text/html');  // Parse the HTML file
+            const articles = Array.from(categoryDoc.querySelectorAll('article'));   // Get all the articles
 
+            // For each article, get the advertisement id and create the features table
             articles.forEach(article => {
                 const advertisementId = article.querySelector('p').textContent.trim().split(' ')[1];
                 const featuresString = featuresData[advertisementId];
@@ -146,7 +139,7 @@ function displayCategoryArticles(categoryId, categoryHtmls) {
             });
 
             return articles;
-        } else if (categoryHtml) {
+        } else if (categoryHtml) {  // Handle all the other categories
             const categoryDoc = parser.parseFromString(categoryHtml, 'text/html');
             return Array.from(categoryDoc.querySelectorAll('article'));
         } else {
@@ -154,6 +147,7 @@ function displayCategoryArticles(categoryId, categoryHtmls) {
         }
     });
 
+    // Shuffle the articles for a more realistic result
     shuffleArray(categoryArticles);
 
     const rentalsSection = document.querySelector('.rentals-section');
@@ -173,6 +167,8 @@ function displayCategoryArticles(categoryId, categoryHtmls) {
     });
 }
 
+// Function to get the category title from the category id, 
+//could have been done better and more dynamically 
 function getCategoryTitleFromId(categoryId) {
     switch (categoryId) {
         case 'οχήματα':
@@ -192,6 +188,7 @@ function getCategoryTitleFromId(categoryId) {
     }
 }
 
+// Not required but it's shuffling the ads for a more realistic approach
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));

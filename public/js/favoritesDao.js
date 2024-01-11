@@ -15,12 +15,12 @@ function addToFavorites(advertisementId, title, description, cost, imageUrl, uui
       uuid,
       username,
     });
-    console.log('Added to favorites successfully!');
-    console.log('Updated favoritesDatabase:', favoritesDatabase); // Log the database
+    //console.log('Added to favorites successfully!');  // Log for testing purposes
+    //console.log('Updated favoritesDatabase:', favoritesDatabase); // Log the database
     return true;
   } else {
     console.error('Advertisement is already in favorites for this user.');
-    console.log('FavoritesDatabase:', favoritesDatabase); // Log the database
+    //console.log('FavoritesDatabase:', favoritesDatabase); // Log the database
     return false; 
   }
 }

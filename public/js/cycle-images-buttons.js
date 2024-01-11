@@ -1,3 +1,7 @@
+
+// Function to have image carousel in car-rentals.html, not needed in general
+// doesn't affect category.html, it's just for car-rentals.html, can be deleted
+// if we don't care about the appearence of car-rentals.html.
 document.addEventListener('DOMContentLoaded', function () {
     // Get all carousel containers
     const carousels = document.querySelectorAll('.image-carousel');
